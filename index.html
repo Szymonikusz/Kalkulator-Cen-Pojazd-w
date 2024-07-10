@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Kosztów Wynajmu Samochodu</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator Kosztów Wynajmu Samochodu</h1>
+        <form id="rentalForm">
+            <label for="distance">Szacunkowa ilość kilometrów do przejechania (km):</label>
+            <input type="number" id="distance" name="distance" required>
+            <br/>
+            <label for="licenseYear">Rok otrzymania prawa jazdy:</label>
+            <input type="number" id="licenseYear" name="licenseYear" required>
+            <br/>
+            <label for="rentalDate">Termin wypożyczenia samochodu:</label>
+            <input type="date" id="rentalDate" name="rentalDate" required>
+            <br/>
+            <label for="days">Ilość dni wynajmu:</label>
+            <input type="number" id="days" name="days" required>
+            <br/>
+            <label for="carCategory">Kategoria samochodu:</label>
+            <select id="carCategory" name="carCategory" required>
+                <option value="basic">Basic</option>
+                <option value="standard">Standard</option>
+                <option value="medium">Medium</option>
+                <option value="premium">Premium</option>
+                <option value="luxury">Luxury</option>
+            </select>
+            <br/>
+            <label for="fuelPrice">Cena paliwa za litr (zł):</label>
+            <input type="number" id="fuelPrice" name="fuelPrice" required step="0.01">
+            <br/>
+            <label for="fuelConsumption">Średnie spalanie (l/100km):</label>
+            <input type="number" id="fuelConsumption" name="fuelConsumption" required step="0.1">
+            <br/>
+            <label for="availableCars">Ilość dostępnych egzemplarzy danego modelu:</label>
+            <input type="number" id="availableCars" name="availableCars" required>
+            <br/>
+            <button type="button" onclick="calculateCost()">Oblicz Koszt</button>
+        </form>
+        <div id="result"></div>
+    </div>
+</body>
+</html>
