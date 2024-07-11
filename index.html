@@ -5,45 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator Kosztów Wynajmu Samochodu</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./app.js" defer></script>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Główny skrypt JS -->
+    <script src="./app.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <!-- to tak nie działa -->
 </head>
 <body>
     <div class="container">
         <h1>Kalkulator Kosztów Wynajmu Samochodu</h1>
         <form id="rentalForm">
-            <label for="distance">Szacunkowa ilość kilometrów do przejechania (km):</label>
-            <input type="number" id="distance" name="distance" required>
-            <br/>
-            <label for="licenseYear">Rok otrzymania prawa jazdy:</label>
-            <input type="number" id="licenseYear" name="licenseYear" required>
-            <br/>
-            <label for="rentalDate">Termin wypożyczenia samochodu:</label>
-            <input type="date" id="rentalDate" name="rentalDate" required>
-            <br/>
-            <label for="days">Ilość dni wynajmu:</label>
-            <input type="number" id="days" name="days" required>
-            <br/>
-            <label for="carCategory">Kategoria samochodu:</label>
-            <select id="carCategory" name="carCategory" required>
-                <option value="basic">Basic</option>
-                <option value="standard">Standard</option>
-                <option value="medium">Medium</option>
-                <option value="premium">Premium</option>
-                <option value="luxury">Luxury</option>
-            </select>
-            <br/>
-            <label for="fuelPrice">Cena paliwa za litr (zł):</label>
-            <input type="number" id="fuelPrice" name="fuelPrice" required step="0.01">
-            <br/>
-            <label for="fuelConsumption">Średnie spalanie (l/100km):</label>
-            <input type="number" id="fuelConsumption" name="fuelConsumption" required step="0.1">
-            <br/>
-            <label for="availableCars">Ilość dostępnych egzemplarzy danego modelu:</label>
-            <input type="number" id="availableCars" name="availableCars" required>
-            <br/>
+            <div class="row">
+                <label for="distance">Szacunkowa ilość kilometrów do przejechania (km):</label>
+                <input type="number" id="distance" name="distance" required>
+            </div>
+            <div class="row">
+                <label for="licenseYear">Rok otrzymania prawa jazdy:</label>
+                <input type="number" id="licenseYear" name="licenseYear" required>
+            </div>
+            <div class="row">
+                <label for="rentalDate">Termin wypożyczenia samochodu:</label>
+                <input type="date" id="rentalDate" name="rentalDate" required>
+            </div>
+            <div class="row">
+                <label for="days">Ilość dni wynajmu:</label>
+                <input type="number" id="days" name="days" required>
+            </div>
+            <div class="row">
+                <label for="carBrand">Marka samochodu:</label>
+                <select id="carBrand" name="carBrand" required>
+                
+                </select>
+            </div>
+            <div class="row">
+                <label for="fuelPrice">Cena paliwa za litr (zł):</label>
+                <input type="number" id="fuelPrice" name="fuelPrice" required step="0.01">
+            </div>
+            <div class="row">
+                <label for="fuelConsumption">Średnie spalanie (l/100km):</label>
+                <input type="number" id="fuelConsumption" name="fuelConsumption" required step="0.1">
+            </div>
             <button type="button" onclick="calculateCost()">Oblicz Koszt</button>
         </form>
         <div id="result"></div>
     </div>
+
+    
 </body>
 </html>
