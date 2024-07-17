@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const carBrandSelect = document.getElementById('carBrand');
     
     availableCars.forEach(car => {
-        console.log(car)
         const option = document.createElement('option');
         option.value = car.brand;
         option.textContent = `${car.brand} (${car.category.charAt(0).toUpperCase() + car.category.slice(1)})`;
@@ -52,11 +51,15 @@ function calculateCost() {
         return;
     }
 
-    let totalCost = calculateRentalCost(days, selectedCar.category);
-    totalCost += calculateFuelCost(distance, fuelConsumption, fuelPrice);
-    totalCost = applyAdditionalCharges(totalCost, selectedCar.available, licenseYear);
+    showLoadingSpinner(true);
+    setTimeout(() => {
+        let totalCost = calculateRentalCost(days, selectedCar.category);
+        totalCost += calculateFuelCost(distance, fuelConsumption, fuelPrice);
+        totalCost = applyAdditionalCharges(totalCost, selectedCar.available, licenseYear);
 
-    displayCost(totalCost);
+        displayCost(totalCost);
+        showLoadingSpinner(false);
+    }, 2000); // Simulating a delay for demonstration purposes
 }
 
 function validateForm(distance, licenseYear, rentalDate, days, carBrand, fuelPrice, fuelConsumption, selectedCar) {
@@ -113,5 +116,14 @@ function displayCost(totalCost) {
     const grossCost = (totalCost * VAT_RATE).toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' });
 
     const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `Szacunkowy koszt wynajmu netto: ${netCost}<br>Szacunkowy koszt wynajmu brutto: ${grossCost}`;
+    resultDiv.innerHTML = `Szacunkowy koszt wynajmu netto: <strong><u>${netCost}</u></strong><br>Szacunkowy koszt wynajmu brutto: <strong><u>${grossCost}</u></strong>`;
+}
+
+function showLoadingSpinner(show) {
+    const spinner = document.getElementById('loadingSpinner');
+    if (show) {
+        spinner.style.display = 'block';
+    } else {
+        spinner.style.display = 'none';
+    }
 }
