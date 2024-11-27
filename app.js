@@ -127,3 +127,33 @@ function showLoadingSpinner(show) {
         spinner.style.display = 'none';
     }
 }
+
+/**
+ * Zmienia wartość pola liczbowego na podstawie kroku
+ * @param {string} inputId - ID pola liczbowego
+ * @param {number} step - Krok (wartość dodawana lub odejmowana)
+ */
+function changeValue(inputId, step) {
+    const input = document.getElementById(inputId); // Pobierz pole na podstawie ID
+    const currentValue = parseFloat(input.value) || 0; // Aktualna wartość pola (0, jeśli jest puste)
+    let newValue = currentValue + step; // Nowa wartość
+    window.casd=input
+    // Uwzględnij minimalną wartość, jeśli pole ma `min`
+    if (input.hasAttribute("min")) {
+        const min = parseFloat(input.getAttribute("min"));
+        if(currentValue < min) {
+            newValue = min;
+        } else if (newValue < min) {
+            return; // Nie pozwalaj zejść poniżej minimum
+        }
+    }
+
+    // Uwzględnij krok (step), jeśli pole ma atrybut `step`
+    if (input.hasAttribute("step")) {
+        const stepValue = parseFloat(input.getAttribute("step"));
+        // Zaokrąglij do najbliższego wielokrotności `step`
+        input.value = (Math.round(newValue / stepValue) * stepValue).toFixed(stepValue % 1 === 0 ? 0 : 2);
+    } else {
+        input.value = newValue; // Jeśli nie ma atrybutu `step`, ustaw nową wartość
+    }
+}

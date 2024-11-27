@@ -17,39 +17,68 @@
     <div class="container">
         <h1>Kalkulator Kosztów Wynajmu Samochodu</h1>
         <form id="rentalForm">
-            <div class="row">
-                <label for="distance"><i class="fas fa-road"></i> Szacunkowa ilość kilometrów do przejechania (km):</label>
-                <input type="number" id="distance" name="distance" required>
+            <!-- Pierwszy rząd -->
+            <div class="row-container">
+                <div class="row">
+                    <label for="distance"><i class="fas fa-road"></i> Szacunkowa ilość kilometrów do przejechania:</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="distance" name="distance" required min="0" step="1">
+                        <button type="button" class="decrement" onclick="changeValue('distance', -1)">-</button>
+                        <button type="button" class="increment" onclick="changeValue('distance', 1)">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="licenseYear"><i class="fas fa-id-card"></i> Rok otrzymania prawa jazdy:</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="licenseYear" name="licenseYear" required min="1900" placeholder="1900" step="1">
+                        <button type="button" class="decrement" onclick="changeValue('licenseYear', -1)">-</button>
+                        <button type="button" class="increment" onclick="changeValue('licenseYear', 1)">+</button>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <label for="licenseYear">
-                    <i class="fas fa-id-card"></i> Rok otrzymania prawa jazdy:
-                    <span class="info-icon" title="Tym dłużej masz prawo jazdy, tym mniejszy otrzymujesz podatek.">
-                        <i class="fas fa-info-circle"></i>
-                    </span>
-                </label>
-                <input type="number" id="licenseYear" name="licenseYear" required>
+
+            <!-- Drugi rząd -->
+            <div class="row-container">
+                <div class="row">
+                    <label for="rentalDate"><i class="fas fa-calendar-alt"></i> Termin wypożyczenia samochodu:</label>
+                    <input type="date" id="rentalDate" name="rentalDate" required>
+                </div>
+                <div class="row">
+                    <label for="days"><i class="fas fa-clock"></i> Ilość dni wynajmu:</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="days" name="days" required min="1" step="1">
+                        <button type="button" class="decrement" onclick="changeValue('days', -1)">-</button>
+                        <button type="button" class="increment" onclick="changeValue('days', 1)">+</button>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <label for="rentalDate"><i class="fas fa-calendar-alt"></i> Termin wypożyczenia samochodu:</label>
-                <input type="date" id="rentalDate" name="rentalDate" required>
+
+            <!-- Trzeci rząd -->
+            <div class="row-container">
+                <div class="row">
+                    <label for="carBrand"><i class="fas fa-car"></i> Marka samochodu:</label>
+                    <select id="carBrand" name="carBrand" required></select>
+                </div>
+                <div class="row">
+                    <label for="fuelPrice"><i class="fas fa-gas-pump"></i> Cena paliwa za litr (zł):</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="fuelPrice" name="fuelPrice" required step="0.01" min="0">
+                        <button type="button" class="decrement" onclick="changeValue('fuelPrice', -0.1)">-</button>
+                        <button type="button" class="increment" onclick="changeValue('fuelPrice', 0.1)">+</button>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <label for="days"><i class="fas fa-clock"></i> Ilość dni wynajmu:</label>
-                <input type="number" id="days" name="days" required>
-            </div>
-            <div class="row">
-                <label for="carBrand"><i class="fas fa-car"></i> Marka samochodu:</label>
-                <select id="carBrand" name="carBrand" required></select>
-            </div>
-            <div class="row">
-                <label for="fuelPrice"><i class="fas fa-gas-pump"></i> Cena paliwa za litr (zł):</label>
-                <input type="number" id="fuelPrice" name="fuelPrice" required step="0.01">
-            </div>
+
+            <!-- Czwarty rząd -->
             <div class="row">
                 <label for="fuelConsumption"><i class="fas fa-tachometer-alt"></i> Średnie spalanie (l/100km):</label>
-                <input type="number" id="fuelConsumption" name="fuelConsumption" required step="0.1">
+                <div class="input-wrapper">
+                    <input type="number" id="fuelConsumption" name="fuelConsumption" required step="0.1" min="0">
+                    <button type="button" class="decrement" onclick="changeValue('fuelConsumption', -0.1)">-</button>
+                    <button type="button" class="increment" onclick="changeValue('fuelConsumption', 0.1)">+</button>
+                </div>
             </div>
+
             <button type="button" onclick="calculateCost()">Oblicz Koszt</button>
         </form>
         <div id="result"></div>

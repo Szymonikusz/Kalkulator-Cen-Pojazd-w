@@ -3,7 +3,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: gray;
+    background-color: #E6F7FF; /* Bardzo jasny niebieski */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,176 +12,154 @@ body {
 }
 
 .container {
-    background-color: #000;
+    background-color: #FFF; /* Białe tło kalkulatora */
     padding: 20px;
     border-radius: 20px;
-    width: 600px; /* Zwiększona szerokość kalkulatora */
+    width: 800px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.row input,
-.row select {
-    width: 100%; /* Rozciąga pole na całą szerokość kontenera */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #555;
-    border-radius: 10px;
-    background-color: #333;
-    color: #fff;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.row label {
-    margin-bottom: 5px;
-    color: #fff; /* Tekst wyrównany do lewej (domyślnie w CSS) */
 }
 
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #fff; 
+    color: #000; /* Czarny tekst */
     text-align: center;
 }
 
-.row {
+.row-container {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
+    justify-content: space-between;
+    gap: 40px; /* Odstęp poziomy między polami w tym samym rzędzie */
+    margin-bottom: 20px; /* Odstęp między rzędami */
 }
 
-.row label {
-    margin-bottom: 5px;
-    color: #fff; 
+/* Dodanie odstępu między rzędem a kolejnym rzędem */
+.row-container + .row-container {
+    margin-top: 20px; /* Dodaj odstęp pionowy między kontenerami rzędów */
+}
+
+.row-container .row {
+    flex: 1;
 }
 
 .row input,
 .row select {
-    width: 95%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #555;
-    border-radius: 10px; 
-    background-color: #333; 
-    color: #fff;
+    border-radius: 10px;
+    background-color: #F9F9F9; 
+    box-sizing: border-box;
+    color: #000; 
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, transform 0.2s;
 }
 
-.row input:focus,
-.row select:focus {
-    background-color: #444;
-    outline: none;
+.row label {
+    margin-bottom: 5px;
+    color: #000; 
 }
 
 button {
-    background: linear-gradient(135deg, #00FF00, #009900); /* Gradient tła */
+    background: linear-gradient(135deg, #4CAF50, #388E3C); 
     color: #fff; /* Biały tekst */
-    padding: 15px 30px; /* Wewnętrzne odstępy */
-    border-radius: 10px; /* Zaokrąglone rogi */
-    font-size: 16px; /* Rozmiar czcionki */
-    border: none; /* Usunięcie standardowej ramki */
-    cursor: pointer; /* Zmiana kursora na wskazujący */
-    transition: all 0.3s ease; /* Płynna animacja przy zmianie */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Cień wokół przycisku */
-    width: 100%; /* Szerokość przycisku na 100% szerokości kontenera */
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-bottom: 10px;
+    margin-right: 0,5px;
 }
 
 button:hover {
-    background: linear-gradient(135deg, #009900, #00FF00); /* Zmiana gradientu przy hoverze */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Zwiększenie cienia przy hoverze */
+    background: linear-gradient(135deg, #388E3C, #4CAF50); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 button:active {
-    transform: scale(0.98); /* Lekka zmiana rozmiaru przy naciśnięciu */
+    transform: scale(0.98);
 }
 
 #result {
     margin-top: 20px;
     font-size: 18px;
-    background-color: #333;
-    color: #00FF00;
+    background-color: #F9F9F9; /* Jasny kolor wyników */
+    color: #4CAF50; /* Zielony tekst wyników */
     padding: 15px;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-#result strong u {
-    font-weight: bold;
-    text-decoration: underline;
 }
 
 .spinner {
-    border: 8px solid rgba(255, 255, 255, 0.3);
-    border-top: 8px solid #00FF00;
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-top: 8px solid #4CAF50;
     border-radius: 50%;
     width: 60px;
     height: 60px;
     animation: spin 1s linear infinite;
     position: absolute;
-    top: 50%; 
-    left: 50%;  
-    transform: translate(-50%, -50%);  
-    z-index: 9999; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-.info-icon {
-    color: #007BFF;
-    margin-left: 5px;
-    cursor: pointer;
-    font-size: 14px;
+
+/* Styl dla kontenera z polem i przyciskami */
+.input-wrapper {
+    display: flex;
+    align-items: center;
     position: relative;
 }
 
-.info-icon:hover {
-    color: #0056b3; 
+/* Dopasowanie pola w kontenerze */
+.input-wrapper input {
+    flex: 1; /* Pole zajmuje maksymalną szerokość */
+    padding-right: 60px; /* Miejsce na przyciski */
 }
 
-.info-icon::after {
-    content: attr(title); 
+/* Styl dla przycisków "+" i "-" */
+.input-wrapper button {
     position: absolute;
-    background: #333;
-    color: #fff;
-    font-size: 12px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    top: 150%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 1000;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 35px; 
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-.info-icon:hover::after {
-    opacity: 1;
-    visibility: visible;
-}
-.row input:focus,
-.row select:focus {
-    border: 3px solid gray; /* Zwiększenie grubości paska do 3px */
-    outline: none; /* Usuwamy domyślny obrys */
-    box-shadow: 0 0 5px rgba(169, 169, 169, 0.5); /* Subtelny cień wokół pola (szary) */
+/* Przyciski po prawej stronie */
+.input-wrapper .decrement {
+    right: 60px; /* Pozycja przycisku "-" */
+    border-radius: 10px 0 0 10px;
 }
 
-/* Dodatkowy styl dla innych stanów */
-.row input,
-.row select {
-    border: 1px solid #555; /* Domyślny szary obrys dla pól */
-    border-radius: 10px;
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    transition: border 0.3s ease, box-shadow 0.3s ease; /* Dodanie efektu płynnej zmiany */
+.input-wrapper .increment {
+    right: 0px; /* Pozycja przycisku "+" */
+    border-radius: 0 10px 10px 0;
+}
+
+/* Efekt hover dla przycisków */
+.input-wrapper button:hover {
+    background-color: #388E3C;
+}
+
+/* Wyrównanie krawędzi po aktywacji */
+.input-wrapper button:active {
+    transform: scale(0.95);
 }
