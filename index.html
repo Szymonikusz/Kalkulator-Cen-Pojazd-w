@@ -12,9 +12,13 @@
     <script src="./app.js"></script>
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
+        <div class="band"></div>
         <h1>Kalkulator Kosztów Wynajmu Samochodu</h1>
         <form id="rentalForm">
             <!-- Pierwszy rząd -->
@@ -22,15 +26,15 @@
                 <div class="row">
                     <label for="distance"><i class="fas fa-road"></i> Szacunkowa ilość kilometrów do przejechania:</label>
                     <div class="input-wrapper">
-                        <input type="number" id="distance" name="distance" required min="0" step="1">
-                        <button type="button" class="decrement" onclick="changeValue('distance', -1)">-</button>
-                        <button type="button" class="increment" onclick="changeValue('distance', 1)">+</button>
+                        <input type="number" id="distance" name="distance" required min="0" step="50">
+                        <button type="button" class="decrement" onclick="changeValue('distance', -50)">-</button>
+                        <button type="button" class="increment" onclick="changeValue('distance', 50)">+</button>
                     </div>
                 </div>
                 <div class="row">
-                    <label for="licenseYear"><i class="fas fa-id-card"></i> Rok otrzymania prawa jazdy:</label>
+                    <label for="licenseYear"><i class="fas fa-id-card"></i> Dokładny rok otrzymania prawa jazdy:</label>
                     <div class="input-wrapper">
-                        <input type="number" id="licenseYear" name="licenseYear" required min="1900" placeholder="1900" step="1">
+                        <input type="number" id="licenseYear" name="licenseYear" required min="1900" placeholder="1980" step="1">
                         <button type="button" class="decrement" onclick="changeValue('licenseYear', -1)">-</button>
                         <button type="button" class="increment" onclick="changeValue('licenseYear', 1)">+</button>
                     </div>
@@ -85,4 +89,7 @@
         <div id="loadingSpinner" class="spinner" style="display:none;"></div>
     </div>
 </body>
+<footer class="footer">
+    <p>&copy; 2024 Kalkulator Kosztów Wynajmu Samochodu. Wszystkie prawa zastrzeżone.</p>
+</footer>
 </html>

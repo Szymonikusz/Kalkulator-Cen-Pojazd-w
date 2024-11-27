@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
+*, :after, :before {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #E6F7FF; /* Bardzo jasny niebieski */
+    font-family: "Poppins", sans-serif;
+    background-color: #eef3fb; /* Bardzo jasny niebieski */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,17 +16,38 @@ body {
 }
 
 .container {
+    overflow: hidden;
+    position: relative;
     background-color: #FFF; /* Białe tło kalkulatora */
     padding: 20px;
-    border-radius: 20px;
-    width: 800px;
+    border-radius: 16px;
+    max-width: 870px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 6rem;
+    padding-right: 6rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.band{
+
+    border: 0 solid #e5e7eb;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1rem;
+    width: 100%;
+    background-color: rgb(52 168 83/1);
+    opacity: .5;
 }
 
 h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #000; /* Czarny tekst */
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 600;
+    padding-bottom: 20px;
+
+    color: rgb(74, 74, 74);
     text-align: center;
 }
 
@@ -48,7 +73,7 @@ h1 {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #555;
-    border-radius: 10px;
+    border-radius: 0px;
     background-color: #F9F9F9; 
     box-sizing: border-box;
     color: #000; 
@@ -62,7 +87,7 @@ h1 {
 }
 
 button {
-    background: linear-gradient(135deg, #4CAF50, #388E3C); 
+    background: linear-gradient(135deg, #2196F3, #1E88E5);
     color: #fff; /* Biały tekst */
     padding: 15px 30px;
     border-radius: 10px;
@@ -74,10 +99,11 @@ button {
     width: 100%;
     margin-bottom: 10px;
     margin-right: 0,5px;
+    font-weight: bold;
 }
 
 button:hover {
-    background: linear-gradient(135deg, #388E3C, #4CAF50); 
+    background: linear-gradient(135deg, #1E88E5, #2196F3); 
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -126,14 +152,15 @@ button:active {
 .input-wrapper input {
     flex: 1; /* Pole zajmuje maksymalną szerokość */
     padding-right: 60px; /* Miejsce na przyciski */
+    box-sizing: border-box;
 }
 
 /* Styl dla przycisków "+" i "-" */
 .input-wrapper button {
     position: absolute;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
+    background-color: transparent; /* Transparentne tło */
+    border: 2px solid #D1D5DB; /* Szare obramowanie */
+    color: #555; /* Szary kolor tekstu (ikony) */
     width: 30px;
     height: 35px; 
     font-size: 18px;
@@ -141,25 +168,41 @@ button:active {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 0px;
+    box-sizing: border-box;
 }
 
-/* Przyciski po prawej stronie */
+/* Efekt hover dla przycisków "+" i "-" */
+.input-wrapper button:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Subtelny ciemniejszy odcień na hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+}
+
+/* Zaokrąglone rogi */
 .input-wrapper .decrement {
-    right: 60px; /* Pozycja przycisku "-" */
-    border-radius: 10px 0 0 10px;
+    right: 62px; /* Pozycja przycisku "-" */
+    border-radius: 0px;
 }
 
 .input-wrapper .increment {
-    right: 0px; /* Pozycja przycisku "+" */
-    border-radius: 0 10px 10px 0;
+    right: 1px; /* Pozycja przycisku "+" */
+    border-radius: 0px;
 }
 
-/* Efekt hover dla przycisków */
-.input-wrapper button:hover {
-    background-color: #388E3C;
-}
-
-/* Wyrównanie krawędzi po aktywacji */
+/* Efekt aktywacji dla przycisków "+" i "-" */
 .input-wrapper button:active {
     transform: scale(0.95);
+    background-color: rgba(0, 0, 0, 0.1); 
+}
+.footer {
+    position: fixed; 
+    bottom: 10px; 
+    right: 10px; 
+    font-size: 14px; 
+    color: #555;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
 }

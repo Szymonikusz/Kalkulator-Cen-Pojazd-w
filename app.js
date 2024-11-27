@@ -129,31 +129,57 @@ function showLoadingSpinner(show) {
 }
 
 /**
- * Zmienia wartość pola liczbowego na podstawie kroku
- * @param {string} inputId - ID pola liczbowego
- * @param {number} step - Krok (wartość dodawana lub odejmowana)
+
+ * @param {string} inputId 
+ * @param {number} step 
  */
 function changeValue(inputId, step) {
-    const input = document.getElementById(inputId); // Pobierz pole na podstawie ID
-    const currentValue = parseFloat(input.value) || 0; // Aktualna wartość pola (0, jeśli jest puste)
-    let newValue = currentValue + step; // Nowa wartość
+    const input = document.getElementById(inputId); 
+    const currentValue = parseFloat(input.value) || 0; 
+    let newValue = currentValue + step; 
     window.casd=input
-    // Uwzględnij minimalną wartość, jeśli pole ma `min`
     if (input.hasAttribute("min")) {
         const min = parseFloat(input.getAttribute("min"));
         if(currentValue < min) {
             newValue = min;
         } else if (newValue < min) {
-            return; // Nie pozwalaj zejść poniżej minimum
+            return; 
         }
     }
 
-    // Uwzględnij krok (step), jeśli pole ma atrybut `step`
     if (input.hasAttribute("step")) {
         const stepValue = parseFloat(input.getAttribute("step"));
-        // Zaokrąglij do najbliższego wielokrotności `step`
         input.value = (Math.round(newValue / stepValue) * stepValue).toFixed(stepValue % 1 === 0 ? 0 : 2);
     } else {
-        input.value = newValue; // Jeśli nie ma atrybutu `step`, ustaw nową wartość
+        input.value = newValue;
     }
+}
+const MIN_LICENSE_YEAR = 1900;
+const INITIAL_LICENSE_YEAR = 1980;
+
+function changeValue(inputId, step) {
+    const input = document.getElementById(inputId);
+    let currentValue;
+
+    if (inputId === 'licenseYear') {
+        currentValue = parseFloat(input.value) || INITIAL_LICENSE_YEAR;
+    } else {
+        currentValue = parseFloat(input.value) || 0;
+    }
+
+    let newValue = currentValue + step;
+
+    if (input.hasAttribute("step")) {
+        const stepValue = parseFloat(input.getAttribute("step"));
+        newValue = Math.round(newValue / stepValue) * stepValue;
+    }
+
+    if (input.hasAttribute("min")) {
+        const min = parseFloat(input.getAttribute("min"));
+        if (newValue < min) {
+            newValue = min;
+        }
+    }
+
+    input.value = newValue.toFixed(step % 1 === 0 ? 0 : 2);
 }
