@@ -24,13 +24,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const availableCars = filterAvailableCars(cars, 0); 
     const carBrandSelect = document.getElementById('carBrand');
     
+    // Dodaj dostępne samochody
     availableCars.forEach(car => {
         const option = document.createElement('option');
         option.value = car.brand;
         option.textContent = `${car.brand} (${car.category.charAt(0).toUpperCase() + car.category.slice(1)})`;
         carBrandSelect.appendChild(option);
     });
+
+    // Pobierz cenę paliwa z API i ustaw ją w polu
+    fetchFuelPrice();
 });
+
+// Funkcja do pobrania ceny paliwa z API
+function fetchFuelPrice() {
+    fetch('https://run.mocky.io/v3/b05cb10b-5363-44f3-a18e-b1e6bbb9f62c')  // Zmień ten URL na adres Twojego API
+        .then(response => response.json())
+        .then(data => {
+            // Załóżmy, że w API zwrócone są ceny paliw w obiekcie
+            const fuelPrice = data.diesel; // Na przykład cena dla paliwa diesel
+            document.getElementById('fuelPrice').value = fuelPrice.toFixed(2); // Ustawienie wartości w polu
+        })
+        .catch(error => {
+            console.error('Błąd pobierania danych z API:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Błąd',
+                text: 'Nie udało się pobrać ceny paliwa z API.'
+            });
+        });
+}
 
 function calculateCost() {
     const distance = parseFloat(document.getElementById('distance').value);
