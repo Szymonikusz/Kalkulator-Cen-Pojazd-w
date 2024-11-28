@@ -10,9 +10,13 @@ body {
     background-color: #eef3fb; /* Bardzo jasny niebieski */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Ustawiamy kalkulator na górze */
     height: 100vh;
     margin: 0;
+}
+
+input, select {
+    font-family: "Poppins", sans-serif;
 }
 
 .container {
@@ -28,9 +32,10 @@ body {
     padding-left: 6rem;
     padding-right: 6rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px; /* Przesunięcie kalkulatora w górę */
 }
-.band{
 
+.band {
     border: 0 solid #e5e7eb;
     position: absolute;
     left: 0;
@@ -46,7 +51,6 @@ h1 {
     line-height: 36px;
     font-weight: 600;
     padding-bottom: 20px;
-
     color: rgb(74, 74, 74);
     text-align: center;
 }
@@ -85,9 +89,12 @@ h1 {
     margin-bottom: 5px;
     color: #000; 
 }
+input, select {
+    border: unset !important;
+}
 
 button {
-    background: linear-gradient(135deg, #2196F3, #1E88E5);
+    background: linear-gradient(135deg, #f1f1f1, #f1f1f1);
     color: #fff; /* Biały tekst */
     padding: 15px 30px;
     border-radius: 10px;
@@ -103,9 +110,18 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(135deg, #1E88E5, #2196F3); 
+    background:  #303031; 
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
+
+.diffrrento {
+    background: linear-gradient(135deg, #1E88E5, #2196F3);
+}
+.diffrrento:hover {
+    background: linear-gradient(135deg, #2196F3, #1E88E5);
+}
+
+
 
 button:active {
     transform: scale(0.98);
@@ -181,7 +197,7 @@ button:active {
 
 /* Zaokrąglone rogi */
 .input-wrapper .decrement {
-    right: 62px; /* Pozycja przycisku "-" */
+    right: 65px; /* Pozycja przycisku "-" */
     border-radius: 0px;
 }
 
@@ -195,14 +211,64 @@ button:active {
     transform: scale(0.95);
     background-color: rgba(0, 0, 0, 0.1); 
 }
+
 .footer {
-    position: fixed; 
-    bottom: 10px; 
-    right: 10px; 
-    font-size: 14px; 
-    color: #555;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 5px 10px; 
-    border-radius: 5px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    position: fixed;
+    bottom: 20px; /* Odstęp od dolnej krawędzi */
+    left: 50%; /* Wycentrowanie paska */
+    transform: translateX(-50%); /* Przesunięcie o połowę szerokości, aby był idealnie wycentrowany */
+    width: 90%; /* Pasek zajmuje 90% szerokości ekranu */
+    max-width: 1200px; /* Maksymalna szerokość paska (dla dużych ekranów) */
+    background-color: #fff; /* Białe tło */
+    color: #333; /* Ciemny kolor tekstu */
+    text-align: center;
+    padding: 25px 0; /* Zwiększenie wysokości paska (grubszy pasek) */
+    font-size: 18px; /* Zwiększenie rozmiaru czcionki */
+    font-weight: bold; /* Wytłuszczenie tekstu */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Delikatny cień u góry paska */
+    border-radius: 20px; /* Zaokrąglone boki paska */
+    display: flex; /* Użycie flexboxa */
+    justify-content: space-around; /* Rozmieszczenie elementów */
+    align-items: flex-start; /* Wyrównanie elementów w górę */
+    gap: 60px; /* Odstęp między sekcjami */
+}
+
+/* Styl dla każdej sekcji z ikoną i tekstem */
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Wyrównanie elementów w poziomie */
+    justify-content: center;
+    
+}
+
+/* Styl dla ikonek przed tekstem */
+.icon {
+    font-size: 32px; /* Zwiększenie rozmiaru ikony */
+    margin-bottom: 8px; /* Odstęp między ikoną a liczbą */
+    color: #333; /* Kolor ikony (czarny) */
+    background-color: #eef3fb; /* Tło ikony (kolor kalkulatora) */
+    border: 3px solid #fff; /* Białe obramowanie (grubsze) */
+    border-radius: 10px; /* Zaokrąglone rogi */
+    padding: 12px; /* Zwiększony odstęp wewnętrzny, aby ikona miała więcej przestrzeni */
+    margin-right: 0.5rem;
+}
+
+/* Styl dla liczb wytłuszczonych */
+.footer .highlight {
+    color: #4CAF50; /* Zielony kolor dla liczb */
+    font-size: 24px; /* Zwiększenie rozmiaru czcionki dla liczb */
+    font-weight: bold; /* Wytłuszczenie tekstu */
+}
+
+/* Stylowanie dla tekstu w stopce */
+.footer p {
+    margin: 0;
+    font-size: 18px; /* Mniejszy rozmiar tekstu */
+    font-weight: normal; /* Normalne wytłuszczenie */
+    letter-spacing: 0; /* Brak odstępu między literami */
+}
+
+.content {
+    text-align: left;
 }
