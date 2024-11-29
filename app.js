@@ -38,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Funkcja do pobrania ceny paliwa z API
 function fetchFuelPrice() {
-    fetch('https://run.mocky.io/v3/b05cb10b-5363-44f3-a18e-b1e6bbb9f62c')  // Zmień ten URL na adres Twojego API
+    fetch('https://run.mocky.io/v3/b918f6cf-7135-4a8a-9a48-fa7ad751798f')  // Zmień ten URL na adres Twojego API
         .then(response => response.json())
         .then(data => {
             // Załóżmy, że w API zwrócone są ceny paliw w obiekcie
-            const fuelPrice = data.diesel; // Na przykład cena dla paliwa diesel
+            const fuelPrice = data.price; // Na przykład cena dla paliwa diesel
             document.getElementById('fuelPrice').value = fuelPrice.toFixed(2); // Ustawienie wartości w polu
         })
         .catch(error => {
