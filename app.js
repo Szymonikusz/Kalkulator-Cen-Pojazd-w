@@ -32,7 +32,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function fetchFuelPrice() {
+    fetch('https://run.mocky.io/v3/b918f6cf-7135-4a8a-9a48-fa7ad751798f')  
+        .then(response => {
+            console.log('Odpowiedź:', response);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Dane z API:', data);
+            const fuelPrice = data.price;
+            const fuelPriceInput = document.getElementById('fuelPrice');
+            console.log('Element input:', fuelPriceInput);
+            if (fuelPriceInput) {
+                fuelPriceInput.value = fuelPrice.toFixed(2);
+            } else {
+                console.error('Nie znaleziono elementu fuelPrice w DOM');
+            }
+        })
+        .catch(error => {
+            console.error('Błąd pobierania danych z API:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Błąd',
+                text: 'Nie udało się pobrać ceny paliwa z API.'
+            });
+        });
+}
+
 function calculateCost() {
+    const resultDiv = document.getElementById('result');
+    resultDiv.classList.add('hidden'); // Ukryj wynik przed obliczeniami
+
     const distance = parseFloat(document.getElementById('distance').value);
     const licenseYear = parseInt(document.getElementById('licenseYear').value);
     const rentalDate = document.getElementById('rentalDate').value;
@@ -59,7 +92,7 @@ function calculateCost() {
 
         displayCost(totalCost);
         showLoadingSpinner(false);
-    }, 2000); // Simulating a delay for demonstration purposes
+    }, 2000);
 }
 
 function validateForm(distance, licenseYear, rentalDate, days, carBrand, fuelPrice, fuelConsumption, selectedCar) {
@@ -117,6 +150,7 @@ function displayCost(totalCost) {
 
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = `Szacunkowy koszt wynajmu netto: <strong><u>${netCost}</u></strong><br>Szacunkowy koszt wynajmu brutto: <strong><u>${grossCost}</u></strong>`;
+    resultDiv.classList.remove('hidden'); // Pokazanie wyniku
 }
 
 function showLoadingSpinner(show) {

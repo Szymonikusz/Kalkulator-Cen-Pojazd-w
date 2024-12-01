@@ -272,3 +272,101 @@ button:active {
 .content {
     text-align: left;
 }
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    body {
+        align-items: flex-start;
+        height: auto;
+    }
+
+    .container {
+        padding: 1rem;
+        margin-top: 20px;
+        width: 95%;
+    }
+
+    .row-container {
+        flex-direction: column; /* Ułóż pola jedno pod drugim */
+        gap: 20px;
+    }
+
+    .row {
+        width: 100%; /* Pola zajmują pełną szerokość */
+    }
+
+    .row label {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 15px;
+        position: static; /* Stopka nie jest przyklejona na małych ekranach */
+    }
+
+    .footer .item {
+        flex-direction: row; /* Ikony i tekst obok siebie */
+        justify-content: center;
+    }
+
+    .footer .icon {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .input-wrapper button {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    #result {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 12px;
+    }
+
+    .footer .highlight {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        display: none; /* Ukrywa stopkę na urządzeniach mobilnych */
+    }
+}
