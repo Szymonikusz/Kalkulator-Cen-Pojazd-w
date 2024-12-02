@@ -419,3 +419,28 @@ button:active {
 .user-bar-right a:hover {
     color: #555; /* Zmiana koloru ikon po najechaniu */
 }
+
+.navigation-row {
+    display: flex;
+    justify-content: space-between; /* Tekst po lewej, przycisk po prawej */
+    align-items: center;
+    margin-top: 10px; /* Odstęp od poprzedniego pola */
+}
+
+.toggle-btn {
+    background: linear-gradient(135deg, #1E88E5, #2196F3);
+    color: #fff;
+    border: none;
+    padding: 8px 15px; /* Zachowujemy smukły padding */
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    width: 150px; /* Ustawiamy stałą szerokość przycisku */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Delikatny cień */
+}
+
+.toggle-btn:hover {
+    background: linear-gradient(135deg, #2196F3, #1E88E5);
+}

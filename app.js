@@ -299,3 +299,78 @@ document.addEventListener('DOMContentLoaded', () => {
     updateUserCount();
 });
 
+// Funkcja naliczania kosztów dodatków
+function calculateAdditionalCosts() {
+    const days = parseInt(document.getElementById('days').value) || 0;
+    const childSeatCount = parseInt(document.getElementById('childSeat').value) || 0;
+    const snowChainsCount = parseInt(document.getElementById('snowChains').value) || 0;
+
+    // Koszty na podstawie ilości i liczby dni
+    const childSeatCost = childSeatCount * days * 20;
+    const snowChainsCost = snowChainsCount * days * 20;
+
+    // Łączny koszt dodatków
+    additionalCost = childSeatCost + snowChainsCost;
+    console.log('Aktualny koszt dodatków:', additionalCost);
+}
+
+// Aktualizacja pola przy zmianie
+document.getElementById('childSeat').addEventListener('change', calculateAdditionalCosts);
+document.getElementById('snowChains').addEventListener('change', calculateAdditionalCosts);
+document.getElementById('days').addEventListener('change', calculateAdditionalCosts);
+
+// Inicjalne naliczenie kosztów przy załadowaniu strony
+document.addEventListener('DOMContentLoaded', calculateAdditionalCosts);
+
+
+let isNavigationSelected = false;
+
+// Funkcja toggle dla przycisku Nawigacja
+function toggleNavigation() {
+    const navigationButton = document.getElementById('navigationToggle');
+
+    // Zmieniamy stan przycisku
+    if (isNavigationSelected) {
+        // Jeśli nawigacja jest już wybrana, zmieniamy na niewybraną
+        navigationButton.textContent = 'Wybierz';
+        navigationButton.classList.remove('selected'); // Opcjonalnie dodaj klasę, jeśli styl ma się zmieniać
+        isNavigationSelected = false;
+
+        // Usuwamy koszt nawigacji
+        subtractNavigationCost();
+    } else {
+        // Jeśli nawigacja nie była wybrana, zmieniamy na wybraną
+        navigationButton.textContent = 'Wybrano';
+        navigationButton.classList.add('selected'); // Opcjonalnie dodaj klasę, jeśli styl ma się zmieniać
+        isNavigationSelected = true;
+
+        // Dodajemy koszt nawigacji
+        addNavigationCost();
+    }
+}
+
+// Funkcja dodawania kosztu Nawigacji
+function addNavigationCost() {
+    const days = parseInt(document.getElementById('days').value) || 0; // Pobieramy liczbę dni
+    if (days > 0) {
+        const additionalCost = days * 20; // Koszt 20 zł/dzień
+        updateAdditionalCost(additionalCost);
+    }
+}
+
+// Funkcja odejmowania kosztu Nawigacji
+function subtractNavigationCost() {
+    const days = parseInt(document.getElementById('days').value) || 0; // Pobieramy liczbę dni
+    if (days > 0) {
+        const additionalCost = days * 20; // Koszt 20 zł/dzień
+        updateAdditionalCost(-additionalCost);
+    }
+}
+
+// Funkcja aktualizowania kosztów dodatków
+let additionalCost = 0;
+
+function updateAdditionalCost(cost) {
+    additionalCost += cost;
+    console.log('Aktualny koszt dodatków:', additionalCost);
+}

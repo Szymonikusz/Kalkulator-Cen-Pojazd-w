@@ -72,7 +72,34 @@
                     </div>
                 </div>
             </div>
-            <!-- Czwarty rząd -->
+            <!-- Pola dodatków -->
+<div class="row-container">
+    <!-- Fotelik dla dziecka -->
+    <div class="row">
+        <label for="childSeat"><i class="fas fa-baby-carriage"></i> Fotelik dla dziecka:</label>
+        <div class="input-wrapper">
+            <input type="number" id="childSeat" name="childSeat" min="0" step="1" placeholder="20 zł/dzień">
+            <button type="button" class="decrement" onclick="changeValue('childSeat', -1)">-</button>
+            <button type="button" class="increment" onclick="changeValue('childSeat', 1)">+</button>
+        </div>
+    </div>
+
+    <!-- Łańcuchy śnieżne (komplet) -->
+    <div class="row">
+        <label for="snowChains"><i class="fas fa-snowflake"></i> Łańcuchy śnieżne (komplet):</label>
+        <div class="input-wrapper">
+            <input type="number" id="snowChains" name="snowChains" min="0" step="1" placeholder="20 zł/dzień">
+            <button type="button" class="decrement" onclick="changeValue('snowChains', -1)">-</button>
+            <button type="button" class="increment" onclick="changeValue('snowChains', 1)">+</button>
+        </div>
+    </div>
+</div>
+<!-- Pole Nawigacja -->
+<div class="row navigation-row">
+    <label><i class="fas fa-map-marked-alt"></i> Nawigacja 20 zł/dzień</label>
+    <button type="button" id="navigationToggle" class="toggle-btn" onclick="toggleNavigation()">Wybierz</button>
+</div>
+            <!-- Piąty rząd -->
             <div class="row">
                 <label for="fuelConsumption"><i class="fas fa-tachometer-alt"></i> Średnie spalanie (l/100km):</label>
                 <div class="input-wrapper">
