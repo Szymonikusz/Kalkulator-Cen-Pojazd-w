@@ -216,7 +216,7 @@ button:active {
     position: fixed;
     bottom: 20px; /* Odstęp od dolnej krawędzi */
     left: 50%; /* Wycentrowanie paska */
-    transform: translateX(-50%); /* Przesunięcie o połowę szerokości, aby był idealnie wycentrowany */
+    transform: translateX(-50%); 
     width: 90%; /* Pasek zajmuje 90% szerokości ekranu */
     max-width: 1200px; /* Maksymalna szerokość paska (dla dużych ekranów) */
     background-color: #fff; /* Białe tło */
@@ -365,8 +365,57 @@ button:active {
     }
 }
 
-@media (max-width: 768px) {
-    .footer {
-        display: none; /* Ukrywa stopkę na urządzeniach mobilnych */
+@media (max-width: 769px) {
+    body {
+        display: block; /* Wyłączenie flexbox */
+        padding-bottom: 20px;
     }
+
+    .footer {
+        transform: none; /* Usunięcie przesunięcia */
+        left: auto; /* Opcjonalne wyśrodkowanie */
+        padding: 20px 0; /* Ustawienie paddingu: 20px góra i dół, 0 boki */
+        width: auto; /* Wyłączenie szerokości 90% */
+        margin: 0 auto; /* Wyśrodkowanie stopki */
+        text-align: center; /* Wyśrodkowanie zawartości */
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 20px;
+    }
+}
+.user-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000; /* Czarny tekst */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 20px; /* Odstęp wewnętrzny */
+    z-index: 9999; /* Na wierzchu wszystkich elementów */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtelny cień */
+}
+
+.user-bar-left {
+    flex: 1; /* Rozciągnij do lewej strony */
+}
+
+.user-bar-right {
+    display: flex;
+    gap: 10px; /* Odstęp między ikonami */
+}
+
+.user-bar-right a {
+    color: #000; /* Kolor ikon */
+    font-size: 20px; /* Rozmiar ikon */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.user-bar-right a:hover {
+    color: #555; /* Zmiana koloru ikon po najechaniu */
 }

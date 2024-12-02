@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const availableCars = filterAvailableCars(cars, 0); 
     const carBrandSelect = document.getElementById('carBrand');
     
+    fetchFuelPrice();
+
     availableCars.forEach(car => {
         const option = document.createElement('option');
         option.value = car.brand;
@@ -217,3 +219,83 @@ function changeValue(inputId, step) {
 
     input.value = newValue.toFixed(step % 1 === 0 ? 0 : 2);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const userCountElement = document.getElementById('user-count');
+    const STORAGE_KEY_COUNT = 'userCount'; // Klucz do liczby użytkowników
+    const STORAGE_KEY_TIME = 'lastRefreshTime'; // Klucz do czasu ostatniego odświeżenia
+
+    // Funkcja do odczytu liczby użytkowników z localStorage lub ustawienia domyślnej wartości
+    function getUserCount() {
+        const storedValue = localStorage.getItem(STORAGE_KEY_COUNT);
+        return storedValue ? parseInt(storedValue, 10) : 150; // Jeśli brak zapisanej wartości, zacznij od 150
+    }
+
+    // Funkcja do zapisania liczby użytkowników w localStorage
+    function saveUserCount(count) {
+        localStorage.setItem(STORAGE_KEY_COUNT, count);
+    }
+
+    // Funkcja do odczytu czasu ostatniego odświeżenia z localStorage
+    function getLastRefreshTime() {
+        const storedTime = localStorage.getItem(STORAGE_KEY_TIME);
+        return storedTime ? parseInt(storedTime, 10) : 0; // Jeśli brak zapisu, zwróć 0
+    }
+
+    // Funkcja do zapisania czasu ostatniego odświeżenia w localStorage
+    function saveLastRefreshTime() {
+        localStorage.setItem(STORAGE_KEY_TIME, Date.now());
+    }
+
+    // Funkcja do obliczenia zmiany na podstawie czasu od ostatniego odświeżenia
+    function calculateChange(timeElapsed) {
+        if (timeElapsed < 10000) {
+            // Mniej niż 10 sekund - brak zmiany
+            return 0;
+        } else if (timeElapsed < 30000) {
+            // 10-30 sekund - losowa zmiana +1 lub +2
+            return Math.floor(Math.random() * 2) + 1; // +1 lub +2
+        } else if (timeElapsed < 60000) {
+            // 30-60 sekund - losowa zmiana -5 do +5
+            return Math.floor(Math.random() * 11) - 5; // -5 do +5
+        } else {
+            // Powyżej 1 minuty - losowa zmiana -15 do +15
+            return Math.floor(Math.random() * 31) - 15; // -15 do +15
+        }
+    }
+
+    // Funkcja do aktualizacji liczby użytkowników
+    function updateUserCount() {
+        const userCount = getUserCount();
+        const lastRefreshTime = getLastRefreshTime();
+        const timeElapsed = Date.now() - lastRefreshTime;
+
+        // Oblicz zmianę liczby użytkowników
+        let change = calculateChange(timeElapsed);
+
+        // Jeśli liczba zbliża się do granic, zmiana jest odbijana
+        if (userCount + change < 100) {
+            change = Math.abs(change); // Odbij w górę
+        } else if (userCount + change > 250) {
+            change = -Math.abs(change); // Odbij w dół
+        }
+
+        // Zaktualizuj liczbę użytkowników
+        const newUserCount = userCount + change;
+
+        // Zapisz nową wartość i czas
+        saveUserCount(newUserCount);
+        saveLastRefreshTime();
+
+        // Wyświetl nową wartość
+        userCountElement.textContent = newUserCount;
+    }
+
+    // Wyświetl początkową wartość licznika
+    const initialUserCount = getUserCount();
+    userCountElement.textContent = initialUserCount;
+
+    // Sprawdź i zaktualizuj licznik przy załadowaniu strony
+    updateUserCount();
+});
+

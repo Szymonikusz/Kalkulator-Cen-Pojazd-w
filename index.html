@@ -72,7 +72,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Czwarty rząd -->
             <div class="row">
                 <label for="fuelConsumption"><i class="fas fa-tachometer-alt"></i> Średnie spalanie (l/100km):</label>
@@ -82,12 +81,24 @@
                     <button type="button" class="increment" onclick="changeValue('fuelConsumption', 0.1)">+</button>
                 </div>
             </div>
-
             <button type="button" class="diffrrento" onclick="calculateCost()">Oblicz Koszt</button>
         </form>
         <!-- Dodano klasę hidden -->
         <div id="result" class="hidden"></div>
         <div id="loadingSpinner" class="spinner" style="display:none;"></div>
+    </div>
+    <div id="user-bar" class="user-bar">
+        <div class="user-bar-left">
+            Ilość użytkowników korzystających z kalkulatora: <span id="user-count">150</span>
+        </div>
+        <div class="user-bar-right">
+            <a href="https://www.instagram.com/divstack" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/divstack" target="_blank">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </div>
     </div>
     <footer class="footer">
         <div class="item">
