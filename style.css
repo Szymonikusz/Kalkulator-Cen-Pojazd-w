@@ -1,22 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
-*, :after, :before {
+*, *::after, *::before {
     box-sizing: border-box;
 }
 
 body {
-    font-family: "Poppins", sans-serif;
-    background-color: #eef3fb; /* Bardzo jasny niebieski */
+    font-family: "Poppins", sans-serif; /* Zastosowanie tylko w body */
+    background-color: #eef3fb;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Ustawiamy kalkulator na górze */
-    height: 100vh;
+    align-items: flex-start;
+    min-height: 100vh;
     margin: 0;
+    padding-bottom: 40px;
 }
 
 input, select {
-    font-family: "Poppins", sans-serif;
+    font-family: inherit;
 }
 
 .container {
@@ -32,7 +33,7 @@ input, select {
     padding-left: 6rem;
     padding-right: 6rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 50px; /* Przesunięcie kalkulatora w górę */
+    margin-top: 130px; /* Przesunięcie kalkulatora w górę */
 }
 
 .band {
@@ -76,10 +77,9 @@ h1 {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #555;
-    border-radius: 0px;
+    border: unset;
+    border-radius: 8px;
     background-color: #F9F9F9; 
-    box-sizing: border-box;
     color: #000; 
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, transform 0.2s;
@@ -88,9 +88,6 @@ h1 {
 .row label {
     margin-bottom: 5px;
     color: #000; 
-}
-input, select {
-    border: unset !important;
 }
 
 button {
@@ -132,7 +129,7 @@ button:active {
     font-size: 18px;
     background-color: #F9F9F9; /* Jasny kolor wyników */
     color: #4CAF50; /* Zielony tekst wyników */
-    padding: 15px;
+    padding: 5px;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -168,7 +165,6 @@ button:active {
 .input-wrapper input {
     flex: 1; /* Pole zajmuje maksymalną szerokość */
     padding-right: 60px; /* Miejsce na przyciski */
-    box-sizing: border-box;
 }
 
 /* Styl dla przycisków "+" i "-" */
@@ -185,8 +181,7 @@ button:active {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    border-radius: 0px;
-    box-sizing: border-box;
+    border-radius: 8px;
 }
 
 /* Efekt hover dla przycisków "+" i "-" */
@@ -198,12 +193,10 @@ button:active {
 /* Zaokrąglone rogi */
 .input-wrapper .decrement {
     right: 65px; /* Pozycja przycisku "-" */
-    border-radius: 0px;
 }
 
 .input-wrapper .increment {
     right: 1px; /* Pozycja przycisku "+" */
-    border-radius: 0px;
 }
 
 /* Efekt aktywacji dla przycisków "+" i "-" */
@@ -214,7 +207,7 @@ button:active {
 
 .footer {
     position: fixed;
-    bottom: 20px; /* Odstęp od dolnej krawędzi */
+    top: 45px; /* Odstęp od dolnej krawędzi */
     left: 50%; /* Wycentrowanie paska */
     transform: translateX(-50%); 
     width: 90%; /* Pasek zajmuje 90% szerokości ekranu */
@@ -222,7 +215,7 @@ button:active {
     background-color: #fff; /* Białe tło */
     color: #333; /* Ciemny kolor tekstu */
     text-align: center;
-    padding: 25px 0; /* Zwiększenie wysokości paska (grubszy pasek) */
+    padding: 5px 0; /* Zwiększenie wysokości paska (grubszy pasek) */
     font-size: 18px; /* Zwiększenie rozmiaru czcionki */
     font-weight: bold; /* Wytłuszczenie tekstu */
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Delikatny cień u góry paska */
@@ -285,7 +278,7 @@ button:active {
 
     .container {
         padding: 1rem;
-        margin-top: 20px;
+        margin-top: 70px; 
         width: 95%;
     }
 
@@ -443,4 +436,66 @@ button:active {
 
 .toggle-btn:hover {
     background: linear-gradient(135deg, #2196F3, #1E88E5);
+}
+
+@media (max-width: 768px) {
+    /* Zmiana w układzie input + button */
+    .input-wrapper {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+    }
+
+    .input-wrapper input {
+        text-align: center; /* Wyśrodkowanie zawartości i placeholdera */
+        flex: 1;
+        padding-left: 40px;  /* Miejsce na przycisk "-" po lewej stronie */
+        padding-right: 40px; /* Miejsce na przycisk "+" po prawej stronie */
+    }
+
+    /* Przycisk "-" po lewej stronie */
+    .input-wrapper .decrement {
+        position: absolute;
+        left: 0;
+        top: 40%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        border-radius: 8px;
+        background-color: transparent;
+        border: 2px solid #D1D5DB;
+        color: #555;
+    }
+
+    /* Przycisk "+" po prawej stronie */
+    .input-wrapper .increment {
+        position: absolute;
+        right: 0;
+        top: 40%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        border-radius: 8px;
+        background-color: transparent;
+        border: 2px solid #D1D5DB;
+        color: #555;
+    }
+}
+.section-header {
+    font-size: 18px; /* Rozmiar czcionki */
+    font-weight: 600; /* Pogrubienie tekstu */
+    color: #333; /* Kolor tekstu */
+    margin: 20px 0 10px; /* Odstęp nad i pod nagłówkiem */
+    text-align: left; /* Wyrównanie do lewej strony */
+    padding-left: 10px; /* Odstęp od lewej strony */
+}
+
+/* Nagłówek w wersji mobilnej (jeśli chcesz go dopasować) */
+@media (max-width: 768px) {
+    .section-header {
+        font-size: 16px; /* Zmniejszenie czcionki na mniejszych ekranach */
+    }
 }
