@@ -1,501 +1,518 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
 
-*, *::after, *::before {
-    box-sizing: border-box;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "Poppins", sans-serif; /* Zastosowanie tylko w body */
-    background-color: #eef3fb;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    margin: 0;
-    padding-bottom: 40px;
+  font-family: "Poppins", sans-serif; /* Zastosowanie tylko w body */
+  background-color: #eef3fb;
+  min-height: 100vh;
+  margin: 0;
+  padding-bottom: 40px;
 }
 
-input, select {
-    font-family: inherit;
+input,
+select {
+  font-family: inherit;
+}
+
+main {
+  margin-top: 60px; /* Przesunięcie kalkulatora w górę */
 }
 
 .container {
-    overflow: hidden;
-    position: relative;
-    background-color: #FFF; /* Białe tło kalkulatora */
-    padding: 20px;
-    border-radius: 16px;
-    max-width: 870px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 6rem;
-    padding-right: 6rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 130px; /* Przesunięcie kalkulatora w górę */
+  max-width: 1200px;
+  margin: 0 auto; /* Centrowanie */
+  padding: 0 15px; /* Odstęp od krawędzi */
+}
+
+.calculator-container {
+  margin-top: 20px;
+  overflow: hidden;
+  position: relative;
+  background-color: #fff; /* Białe tło kalkulatora */
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 870px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .band {
-    border: 0 solid #e5e7eb;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 1rem;
-    width: 100%;
-    background-color: rgb(52 168 83/1);
-    opacity: .5;
+  border: 0 solid #e5e7eb;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1rem;
+  width: 100%;
+  background-color: rgb(52 168 83/1);
+  opacity: 0.5;
 }
 
 h1 {
-    font-size: 30px;
-    line-height: 36px;
-    font-weight: 600;
-    padding-bottom: 20px;
-    color: rgb(74, 74, 74);
-    text-align: center;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 600;
+  padding-bottom: 20px;
+  color: rgb(74, 74, 74);
+  text-align: center;
+  margin-bottom: 10px;
 }
 
+h2.section-header {
+  margin-top: 15px; /* Zmniejsz odstęp nad nagłówkiem sekcji */
+  margin-bottom: 10px; /* Zmniejsz odstęp poniżej nagłówka sekcji */
+}
 .row-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px; /* Odstęp poziomy między polami w tym samym rzędzie */
-    margin-bottom: 20px; /* Odstęp między rzędami */
+  display: flex;
+  justify-content: space-between;
+  gap: 40px; /* Odstęp poziomy między polami w tym samym rzędzie */
+  margin-bottom: 20px; /* Odstęp między rzędami */
 }
 
 /* Dodanie odstępu między rzędem a kolejnym rzędem */
 .row-container + .row-container {
-    margin-top: 20px; /* Dodaj odstęp pionowy między kontenerami rzędów */
+  margin-top: 20px; /* Dodaj odstęp pionowy między kontenerami rzędów */
 }
 
 .row-container .row {
-    flex: 1;
+  flex: 1;
 }
 
 .row input,
 .row select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: unset;
-    border-radius: 8px;
-    background-color: #F9F9F9; 
-    color: #000; 
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.2s;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: unset;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color: #000;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .row label {
-    margin-bottom: 5px;
-    color: #000; 
+  margin-bottom: 5px;
+  color: #000;
 }
 
 button {
-    background: linear-gradient(135deg, #f1f1f1, #f1f1f1);
-    color: #fff; /* Biały tekst */
-    padding: 15px 30px;
-    border-radius: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    margin-bottom: 10px;
-    margin-right: 0,5px;
-    font-weight: bold;
+  background: linear-gradient(135deg, #f1f1f1, #f1f1f1);
+  color: #fff; /* Biały tekst */
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin-bottom: 10px;
+  margin-right: 0, 5px;
+  font-weight: bold;
 }
 
 button:hover {
-    background:  #303031; 
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  background: #303031;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .diffrrento {
-    background: linear-gradient(135deg, #1E88E5, #2196F3);
+  background: linear-gradient(135deg, #1e88e5, #2196f3);
 }
 .diffrrento:hover {
-    background: linear-gradient(135deg, #2196F3, #1E88E5);
+  background: linear-gradient(135deg, #2196f3, #1e88e5);
 }
 
-
-
 button:active {
-    transform: scale(0.98);
+  transform: scale(0.98);
 }
 
 #result {
-    margin-top: 20px;
-    font-size: 18px;
-    background-color: #F9F9F9; /* Jasny kolor wyników */
-    color: #4CAF50; /* Zielony tekst wyników */
-    padding: 5px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  font-size: 18px;
+  background-color: #f9f9f9; /* Jasny kolor wyników */
+  color: #4caf50; /* Zielony tekst wyników */
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .spinner {
-    border: 8px solid rgba(0, 0, 0, 0.1);
-    border-top: 8px solid #4CAF50;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-top: 8px solid #4caf50;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Styl dla kontenera z polem i przyciskami */
 .input-wrapper {
-    display: flex;
-    align-items: center;
-    position: relative;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 /* Dopasowanie pola w kontenerze */
 .input-wrapper input {
-    flex: 1; /* Pole zajmuje maksymalną szerokość */
-    padding-right: 60px; /* Miejsce na przyciski */
+  flex: 1; /* Pole zajmuje maksymalną szerokość */
+  padding-right: 60px; /* Miejsce na przyciski */
 }
 
 /* Styl dla przycisków "+" i "-" */
 .input-wrapper button {
-    position: absolute;
-    background-color: transparent; /* Transparentne tło */
-    border: 2px solid #D1D5DB; /* Szare obramowanie */
-    color: #555; /* Szary kolor tekstu (ikony) */
-    width: 30px;
-    height: 35px; 
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 8px;
+  position: absolute;
+  background-color: transparent; /* Transparentne tło */
+  border: 2px solid #d1d5db; /* Szare obramowanie */
+  color: #555; /* Szary kolor tekstu (ikony) */
+  width: 30px;
+  height: 35px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
 }
 
 /* Efekt hover dla przycisków "+" i "-" */
 .input-wrapper button:hover {
-    background-color: rgba(0, 0, 0, 0.05); /* Subtelny ciemniejszy odcień na hover */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.05
+  ); /* Subtelny ciemniejszy odcień na hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Delikatny cień */
 }
 
 /* Zaokrąglone rogi */
 .input-wrapper .decrement {
-    right: 65px; /* Pozycja przycisku "-" */
+  right: 65px; /* Pozycja przycisku "-" */
 }
 
 .input-wrapper .increment {
-    right: 1px; /* Pozycja przycisku "+" */
+  right: 1px; /* Pozycja przycisku "+" */
 }
 
 /* Efekt aktywacji dla przycisków "+" i "-" */
 .input-wrapper button:active {
-    transform: scale(0.95);
-    background-color: rgba(0, 0, 0, 0.1); 
+  transform: scale(0.95);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .footer {
-    position: fixed;
-    top: 45px; /* Odstęp od dolnej krawędzi */
-    left: 50%; /* Wycentrowanie paska */
-    transform: translateX(-50%); 
-    width: 90%; /* Pasek zajmuje 90% szerokości ekranu */
-    max-width: 1200px; /* Maksymalna szerokość paska (dla dużych ekranów) */
-    background-color: #fff; /* Białe tło */
-    color: #333; /* Ciemny kolor tekstu */
-    text-align: center;
-    padding: 5px 0; /* Zwiększenie wysokości paska (grubszy pasek) */
-    font-size: 18px; /* Zwiększenie rozmiaru czcionki */
-    font-weight: bold; /* Wytłuszczenie tekstu */
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Delikatny cień u góry paska */
-    border-radius: 20px; /* Zaokrąglone boki paska */
-    display: flex; /* Użycie flexboxa */
-    justify-content: space-around; /* Rozmieszczenie elementów */
-    align-items: flex-start; /* Wyrównanie elementów w górę */
-    gap: 60px; /* Odstęp między sekcjami */
+  width: 90%; /* Pasek zajmuje 90% szerokości ekranu */
+  max-width: 1200px; /* Maksymalna szerokość paska (dla dużych ekranów) */
+  background-color: #fff; /* Białe tło */
+  color: #333; /* Ciemny kolor tekstu */
+  text-align: center;
+  padding: 5px 0; /* Zwiększenie wysokości paska (grubszy pasek) */
+  font-size: 18px; /* Zwiększenie rozmiaru czcionki */
+  font-weight: bold; /* Wytłuszczenie tekstu */
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Delikatny cień u góry paska */
+  border-radius: 20px; /* Zaokrąglone boki paska */
+  display: flex; /* Użycie flexboxa */
+  justify-content: space-around; /* Rozmieszczenie elementów */
+  align-items: flex-start; /* Wyrównanie elementów w górę */
+  gap: 60px; /* Odstęp między sekcjami */
 }
 
 /* Styl dla każdej sekcji z ikoną i tekstem */
 .item {
-    display: flex;
-    flex-direction: row;
-    align-items: center; /* Wyrównanie elementów w poziomie */
-    justify-content: center;
-    
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Wyrównanie elementów w poziomie */
+  justify-content: center;
 }
 
 /* Styl dla ikonek przed tekstem */
 .icon {
-    font-size: 32px; /* Zwiększenie rozmiaru ikony */
-    margin-bottom: 8px; /* Odstęp między ikoną a liczbą */
-    color: #333; /* Kolor ikony (czarny) */
-    background-color: #eef3fb; /* Tło ikony (kolor kalkulatora) */
-    border: 3px solid #fff; /* Białe obramowanie (grubsze) */
-    border-radius: 10px; /* Zaokrąglone rogi */
-    padding: 12px; /* Zwiększony odstęp wewnętrzny, aby ikona miała więcej przestrzeni */
-    margin-right: 0.5rem;
+  font-size: 32px; /* Zwiększenie rozmiaru ikony */
+  margin-bottom: 8px; /* Odstęp między ikoną a liczbą */
+  color: #333; /* Kolor ikony (czarny) */
+  background-color: #eef3fb; /* Tło ikony (kolor kalkulatora) */
+  border: 3px solid #fff; /* Białe obramowanie (grubsze) */
+  border-radius: 10px; /* Zaokrąglone rogi */
+  padding: 12px; /* Zwiększony odstęp wewnętrzny, aby ikona miała więcej przestrzeni */
+  margin-right: 0.5rem;
 }
 
 /* Styl dla liczb wytłuszczonych */
 .footer .highlight {
-    color: #4CAF50; /* Zielony kolor dla liczb */
-    font-size: 24px; /* Zwiększenie rozmiaru czcionki dla liczb */
-    font-weight: bold; /* Wytłuszczenie tekstu */
+  color: #4caf50; /* Zielony kolor dla liczb */
+  font-size: 24px; /* Zwiększenie rozmiaru czcionki dla liczb */
+  font-weight: bold; /* Wytłuszczenie tekstu */
 }
 
 /* Stylowanie dla tekstu w stopce */
 .footer p {
-    margin: 0;
-    font-size: 18px; /* Mniejszy rozmiar tekstu */
-    font-weight: normal; /* Normalne wytłuszczenie */
-    letter-spacing: 0; /* Brak odstępu między literami */
+  margin: 0;
+  font-size: 18px; /* Mniejszy rozmiar tekstu */
+  font-weight: normal; /* Normalne wytłuszczenie */
+  letter-spacing: 0; /* Brak odstępu między literami */
 }
 
 .content {
-    text-align: left;
+  text-align: left;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 768px) {
-    body {
-        align-items: flex-start;
-        height: auto;
-    }
+  body {
+    align-items: flex-start;
+    height: auto;
+  }
 
-    .container {
-        padding: 1rem;
-        margin-top: 70px; 
-        width: 95%;
-    }
+  .container {
+    padding: 1rem;
+    margin-top: 70px;
+    width: 95%;
+  }
 
-    .row-container {
-        flex-direction: column; /* Ułóż pola jedno pod drugim */
-        gap: 20px;
-    }
+  .row-container {
+    flex-direction: column; /* Ułóż pola jedno pod drugim */
+    gap: 20px;
+  }
 
-    .row {
-        width: 100%; /* Pola zajmują pełną szerokość */
-    }
+  .row {
+    width: 100%; /* Pola zajmują pełną szerokość */
+  }
 
-    .row label {
-        font-size: 14px;
-    }
+  .row label {
+    font-size: 14px;
+  }
 
-    h1 {
-        font-size: 24px;
-        line-height: 30px;
-    }
+  h1 {
+    font-size: 24px;
+    line-height: 30px;
+  }
 
-    button {
-        padding: 10px 20px;
-        font-size: 14px;
-    }
+  button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 
-    .footer {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 15px;
-        position: static; /* Stopka nie jest przyklejona na małych ekranach */
-    }
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    position: static; /* Stopka nie jest przyklejona na małych ekranach */
+  }
 
-    .footer .item {
-        flex-direction: row; /* Ikony i tekst obok siebie */
-        justify-content: center;
-    }
+  .footer .item {
+    flex-direction: row; /* Ikony i tekst obok siebie */
+    justify-content: center;
+  }
 
-    .footer .icon {
-        margin-bottom: 0;
-        margin-right: 10px;
-    }
+  .footer .icon {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
 
-    .input-wrapper button {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
+  .input-wrapper button {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
 
-    #result {
-        font-size: 16px;
-        padding: 10px;
-    }
+  #result {
+    font-size: 16px;
+    padding: 10px;
+  }
 
-    .spinner {
-        width: 50px;
-        height: 50px;
-    }
+  .spinner {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0.5rem;
-    }
+  .container {
+    padding: 0.5rem;
+  }
 
-    h1 {
-        font-size: 20px;
-    }
+  h1 {
+    font-size: 20px;
+  }
 
-    button {
-        font-size: 12px;
-    }
+  button {
+    font-size: 12px;
+  }
 
-    .footer .highlight {
-        font-size: 16px;
-    }
+  .footer .highlight {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 769px) {
-    body {
-        display: block; /* Wyłączenie flexbox */
-        padding-bottom: 20px;
-    }
+  body {
+    display: block; /* Wyłączenie flexbox */
+    padding-bottom: 20px;
+  }
 
-    .footer {
-        transform: none; /* Usunięcie przesunięcia */
-        left: auto; /* Opcjonalne wyśrodkowanie */
-        padding: 20px 0; /* Ustawienie paddingu: 20px góra i dół, 0 boki */
-        width: auto; /* Wyłączenie szerokości 90% */
-        margin: 0 auto; /* Wyśrodkowanie stopki */
-        text-align: center; /* Wyśrodkowanie zawartości */
-        margin-left: 20px;
-        margin-right: 20px;
-        margin-top: 20px;
-    }
+  .footer {
+    transform: none; /* Usunięcie przesunięcia */
+    left: auto; /* Opcjonalne wyśrodkowanie */
+    padding: 20px 0; /* Ustawienie paddingu: 20px góra i dół, 0 boki */
+    width: auto; /* Wyłączenie szerokości 90% */
+    margin: 0 auto; /* Wyśrodkowanie stopki */
+    text-align: center; /* Wyśrodkowanie zawartości */
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
 }
 .user-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #000; /* Czarny tekst */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 5px 20px; /* Odstęp wewnętrzny */
-    z-index: 9999; /* Na wierzchu wszystkich elementów */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtelny cień */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000; /* Czarny tekst */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 20px; /* Odstęp wewnętrzny */
+  z-index: 9999; /* Na wierzchu wszystkich elementów */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtelny cień */
 }
 
 .user-bar-left {
-    flex: 1; /* Rozciągnij do lewej strony */
+  flex: 1; /* Rozciągnij do lewej strony */
 }
 
 .user-bar-right {
-    display: flex;
-    gap: 10px; /* Odstęp między ikonami */
+  display: flex;
+  gap: 10px; /* Odstęp między ikonami */
 }
 
 .user-bar-right a {
-    color: #000; /* Kolor ikon */
-    font-size: 20px; /* Rozmiar ikon */
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: #000; /* Kolor ikon */
+  font-size: 20px; /* Rozmiar ikon */
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .user-bar-right a:hover {
-    color: #555; /* Zmiana koloru ikon po najechaniu */
+  color: #555; /* Zmiana koloru ikon po najechaniu */
 }
 
 .navigation-row {
-    display: flex;
-    justify-content: space-between; /* Tekst po lewej, przycisk po prawej */
-    align-items: center;
-    margin-top: 10px; /* Odstęp od poprzedniego pola */
+  display: flex;
+  justify-content: space-between; /* Tekst po lewej, przycisk po prawej */
+  align-items: center;
+  margin-top: 10px; /* Odstęp od poprzedniego pola */
 }
 
 .toggle-btn {
-    background: linear-gradient(135deg, #1E88E5, #2196F3);
-    color: #fff;
-    border: none;
-    padding: 8px 15px; /* Zachowujemy smukły padding */
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    text-align: center;
-    width: 150px; /* Ustawiamy stałą szerokość przycisku */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Delikatny cień */
+  background: linear-gradient(135deg, #1e88e5, #2196f3);
+  color: #fff;
+  border: none;
+  padding: 8px 15px; /* Zachowujemy smukły padding */
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: 150px; /* Ustawiamy stałą szerokość przycisku */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Delikatny cień */
 }
 
 .toggle-btn:hover {
-    background: linear-gradient(135deg, #2196F3, #1E88E5);
+  background: linear-gradient(135deg, #2196f3, #1e88e5);
 }
 
 @media (max-width: 768px) {
-    /* Zmiana w układzie input + button */
-    .input-wrapper {
-        display: flex;
-        align-items: center;
-        position: relative;
-        width: 100%;
-    }
+  /* Zmiana w układzie input + button */
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
 
-    .input-wrapper input {
-        text-align: center; /* Wyśrodkowanie zawartości i placeholdera */
-        flex: 1;
-        padding-left: 40px;  /* Miejsce na przycisk "-" po lewej stronie */
-        padding-right: 40px; /* Miejsce na przycisk "+" po prawej stronie */
-    }
+  .input-wrapper input {
+    text-align: center; /* Wyśrodkowanie zawartości i placeholdera */
+    flex: 1;
+    padding-left: 40px; /* Miejsce na przycisk "-" po lewej stronie */
+    padding-right: 40px; /* Miejsce na przycisk "+" po prawej stronie */
+  }
 
-    /* Przycisk "-" po lewej stronie */
-    .input-wrapper .decrement {
-        position: absolute;
-        left: 0;
-        top: 40%;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-        border-radius: 8px;
-        background-color: transparent;
-        border: 2px solid #D1D5DB;
-        color: #555;
-    }
+  /* Przycisk "-" po lewej stronie */
+  .input-wrapper .decrement {
+    position: absolute;
+    left: 0;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 2px solid #d1d5db;
+    color: #555;
+  }
 
-    /* Przycisk "+" po prawej stronie */
-    .input-wrapper .increment {
-        position: absolute;
-        right: 0;
-        top: 40%;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-        border-radius: 8px;
-        background-color: transparent;
-        border: 2px solid #D1D5DB;
-        color: #555;
-    }
+  /* Przycisk "+" po prawej stronie */
+  .input-wrapper .increment {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 2px solid #d1d5db;
+    color: #555;
+  }
 }
 .section-header {
-    font-size: 18px; /* Rozmiar czcionki */
-    font-weight: 600; /* Pogrubienie tekstu */
-    color: #333; /* Kolor tekstu */
-    margin: 20px 0 10px; /* Odstęp nad i pod nagłówkiem */
-    text-align: left; /* Wyrównanie do lewej strony */
-    padding-left: 10px; /* Odstęp od lewej strony */
+  font-size: 18px; /* Rozmiar czcionki */
+  font-weight: 600; /* Pogrubienie tekstu */
+  color: #333; /* Kolor tekstu */
+  margin: 20px 0 10px; /* Odstęp nad i pod nagłówkiem */
+  text-align: left; /* Wyrównanie do lewej strony */
+  padding-left: 10px; /* Odstęp od lewej strony */
 }
 
 /* Nagłówek w wersji mobilnej (jeśli chcesz go dopasować) */
 @media (max-width: 768px) {
-    .section-header {
-        font-size: 16px; /* Zmniejszenie czcionki na mniejszych ekranach */
-    }
+  .section-header {
+    font-size: 16px; /* Zmniejszenie czcionki na mniejszych ekranach */
+  }
 }

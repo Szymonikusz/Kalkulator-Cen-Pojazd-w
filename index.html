@@ -1,153 +1,332 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator Kosztów Wynajmu Samochodu</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
     <!-- SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <!-- Główny skrypt JS -->
-    <script src="./app.js"></script>
+
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
     <div id="user-bar" class="user-bar">
-        <div class="user-bar-left">
-            Ilość użytkowników korzystających z kalkulatora: <span id="user-count">150</span>
-        </div>
-        <div class="user-bar-right">
-            <a href="https://www.instagram.com/divstack" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/divstack" target="_blank">
-                <i class="fab fa-facebook"></i>
-            </a>
-        </div>
+      <div class="user-bar-left">
+        Ilość użytkowników korzystających z kalkulatora:
+        <span id="user-count">150</span>
+      </div>
+      <div class="user-bar-right">
+        <a href="https://www.instagram.com/divstack" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/divstack" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </div>
     </div>
-    <div class="container">
+    <main>
+      <footer class="footer container">
+        <div class="item">
+          <i class="fas fa-thumbs-up icon"></i>
+          <div class="content">
+            <span class="highlight">100%</span>
+            <p>zadowolenia klientów</p>
+          </div>
+        </div>
+        <div class="item">
+          <i class="fas fa-calculator icon"></i>
+          <div class="content">
+            <span class="highlight">5000</span>
+            <p>kosztów obliczonych</p>
+          </div>
+        </div>
+      </footer>
+      <div class="calculator-container">
         <div class="band"></div>
         <h1>Kalkulator Kosztów Wynajmu Samochodu</h1>
         <!-- Pierwszy nagłówek pod głównym tytułem -->
         <h2 class="section-header">Informacje o Aucie:</h2>
         <form id="rentalForm">
-            <!-- Pierwszy rząd -->
-            <div class="row-container">
-                <div class="row">
-                    <label for="distance"><i class="fas fa-road"></i> Szacunkowa ilość kilometrów do przejechania:</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="distance" name="distance" required min="0" step="50">
-                        <button type="button" class="decrement" onclick="changeValue('distance', -50)">-</button>
-                        <button type="button" class="increment" onclick="changeValue('distance', 50)">+</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <label for="licenseYear"><i class="fas fa-id-card"></i> Dokładny rok otrzymania prawa jazdy:</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="licenseYear" name="licenseYear" required min="1900" placeholder="1980" step="1">
-                        <button type="button" class="decrement" onclick="changeValue('licenseYear', -1)">-</button>
-                        <button type="button" class="increment" onclick="changeValue('licenseYear', 1)">+</button>
-                    </div>
-                </div>
+          <!-- Pierwszy rząd -->
+          <div class="row-container">
+            <div class="row">
+              <label for="distance"
+                ><i class="fas fa-road"></i> Szacunkowa ilość kilometrów do
+                przejechania:</label
+              >
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="distance"
+                  name="distance"
+                  required
+                  min="0"
+                  step="50"
+                />
+                <button
+                  type="button"
+                  class="decrement"
+                  onclick="changeValue('distance', -50)"
+                >
+                  -
+                </button>
+                <button
+                  type="button"
+                  class="increment"
+                  onclick="changeValue('distance', 50)"
+                >
+                  +
+                </button>
+              </div>
             </div>
+            <div class="row">
+              <label for="licenseYear"
+                ><i class="fas fa-id-card"></i> Dokładny rok otrzymania prawa
+                jazdy:</label
+              >
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="licenseYear"
+                  name="licenseYear"
+                  required
+                  min="1900"
+                  placeholder="1980"
+                  step="1"
+                />
+                <button
+                  type="button"
+                  class="decrement"
+                  onclick="changeValue('licenseYear', -1)"
+                >
+                  -
+                </button>
+                <button
+                  type="button"
+                  class="increment"
+                  onclick="changeValue('licenseYear', 1)"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
 
-            <!-- Drugi rząd -->
-            <div class="row-container">
-                <div class="row">
-                    <label for="rentalDate"><i class="fas fa-calendar-alt"></i> Termin wypożyczenia samochodu:</label>
-                    <input type="date" id="rentalDate" name="rentalDate" required>
-                </div>
-                <div class="row">
-                    <label for="days"><i class="fas fa-clock"></i> Ilość dni wynajmu:</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="days" name="days" required min="1" step="1">
-                        <button type="button" class="decrement" onclick="changeValue('days', -1)">-</button>
-                        <button type="button" class="increment" onclick="changeValue('days', 1)">+</button>
-                    </div>
-                </div>
+          <!-- Drugi rząd -->
+          <div class="row-container">
+            <div class="row">
+              <label for="rentalDate"
+                ><i class="fas fa-calendar-alt"></i> Termin wypożyczenia
+                samochodu:</label
+              >
+              <input type="date" id="rentalDate" name="rentalDate" required />
             </div>
+            <div class="row">
+              <label for="days"
+                ><i class="fas fa-clock"></i> Ilość dni wynajmu:</label
+              >
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="days"
+                  name="days"
+                  required
+                  min="1"
+                  step="1"
+                />
+                <button
+                  type="button"
+                  class="decrement"
+                  onclick="changeValue('days', -1)"
+                >
+                  -
+                </button>
+                <button
+                  type="button"
+                  class="increment"
+                  onclick="changeValue('days', 1)"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
 
-            <!-- Trzeci rząd -->
-            <div class="row-container">
-                <div class="row">
-                    <label for="carBrand"><i class="fas fa-car"></i> Marka samochodu:</label>
-                    <select id="carBrand" name="carBrand" required></select>
-                </div>
-                <div class="row">
-                    <label for="fuelPrice"><i class="fas fa-gas-pump"></i> Cena paliwa za litr (zł):</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="fuelPrice" name="fuelPrice" required step="0.01" min="0">
-                        <button type="button" class="decrement" onclick="changeValue('fuelPrice', -0.1)">-</button>
-                        <button type="button" class="increment" onclick="changeValue('fuelPrice', 0.1)">+</button>
-                    </div>
-                </div>
+          <!-- Trzeci rząd -->
+          <div class="row-container">
+            <div class="row">
+              <label for="carBrand"
+                ><i class="fas fa-car"></i> Marka samochodu:</label
+              >
+              <select id="carBrand" name="carBrand" required></select>
             </div>
-                        <!-- Piąty rząd -->
-                        <div class="row">
-                            <label for="fuelConsumption"><i class="fas fa-tachometer-alt"></i> Średnie spalanie (l/100km):</label>
-                            <div class="input-wrapper">
-                                <input type="number" id="fuelConsumption" name="fuelConsumption" required step="0.1" min="0">
-                                <button type="button" class="decrement" onclick="changeValue('fuelConsumption', -0.1)">-</button>
-                                <button type="button" class="increment" onclick="changeValue('fuelConsumption', 0.1)">+</button>
-                            </div>
-                                          <!-- Drugi nagłówek pod "Średnie spalanie (l/100km)" -->
-              <h2 class="section-header">Dodatki:</h2>
+            <div class="row">
+              <label for="fuelPrice"
+                ><i class="fas fa-gas-pump"></i> Cena paliwa za litr
+                (zł):</label
+              >
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="fuelPrice"
+                  name="fuelPrice"
+                  required
+                  step="0.01"
+                  min="0"
+                />
+                <button
+                  type="button"
+                  class="decrement"
+                  onclick="changeValue('fuelPrice', -0.1)"
+                >
+                  -
+                </button>
+                <button
+                  type="button"
+                  class="increment"
+                  onclick="changeValue('fuelPrice', 0.1)"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Piąty rząd -->
+          <div class="row">
+            <label for="fuelConsumption"
+              ><i class="fas fa-tachometer-alt"></i> Średnie spalanie
+              (l/100km):</label
+            >
+            <div class="input-wrapper">
+              <input
+                type="number"
+                id="fuelConsumption"
+                name="fuelConsumption"
+                required
+                step="0.1"
+                min="0"
+              />
+              <button
+                type="button"
+                class="decrement"
+                onclick="changeValue('fuelConsumption', -0.1)"
+              >
+                -
+              </button>
+              <button
+                type="button"
+                class="increment"
+                onclick="changeValue('fuelConsumption', 0.1)"
+              >
+                +
+              </button>
+            </div>
+            <!-- Drugi nagłówek pod "Średnie spalanie (l/100km)" -->
+            <h2 class="section-header">Dodatki:</h2>
             <!-- Pola dodatków -->
-<div class="row-container">
-    <!-- Fotelik dla dziecka -->
-    <div class="row">
-        <label for="childSeat"><i class="fas fa-baby-carriage"></i> Fotelik dla dziecka:</label>
-        <div class="input-wrapper">
-            <input type="number" id="childSeat" name="childSeat" min="0" step="1" placeholder="20 zł/dzień">
-            <button type="button" class="decrement" onclick="changeValue('childSeat', -1)">-</button>
-            <button type="button" class="increment" onclick="changeValue('childSeat', 1)">+</button>
-        </div>
-    </div>
+            <div class="row-container">
+              <!-- Fotelik dla dziecka -->
+              <div class="row">
+                <label for="childSeat"
+                  ><i class="fas fa-baby-carriage"></i> Fotelik dla
+                  dziecka:</label
+                >
+                <div class="input-wrapper">
+                  <input
+                    type="number"
+                    id="childSeat"
+                    name="childSeat"
+                    min="0"
+                    step="1"
+                    placeholder="20 zł/dzień"
+                  />
+                  <button
+                    type="button"
+                    class="decrement"
+                    onclick="changeValue('childSeat', -1)"
+                  >
+                    -
+                  </button>
+                  <button
+                    type="button"
+                    class="increment"
+                    onclick="changeValue('childSeat', 1)"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
 
-    <!-- Łańcuchy śnieżne (komplet) -->
-    <div class="row">
-        <label for="snowChains"><i class="fas fa-snowflake"></i> Łańcuchy śnieżne (komplet):</label>
-        <div class="input-wrapper">
-            <input type="number" id="snowChains" name="snowChains" min="0" step="1" placeholder="20 zł/dzień">
-            <button type="button" class="decrement" onclick="changeValue('snowChains', -1)">-</button>
-            <button type="button" class="increment" onclick="changeValue('snowChains', 1)">+</button>
-        </div>
-    </div>
-</div>
-<!-- Pole Nawigacja -->
-<div class="row navigation-row">
-    <label><i class="fas fa-map-marked-alt"></i> Nawigacja 20 zł/dzień</label>
-    <button type="button" id="navigationToggle" class="toggle-btn" onclick="toggleNavigation()">Wybierz</button>
-</div>
-
+              <!-- Łańcuchy śnieżne (komplet) -->
+              <div class="row">
+                <label for="snowChains"
+                  ><i class="fas fa-snowflake"></i> Łańcuchy śnieżne
+                  (komplet):</label
+                >
+                <div class="input-wrapper">
+                  <input
+                    type="number"
+                    id="snowChains"
+                    name="snowChains"
+                    min="0"
+                    step="1"
+                    placeholder="20 zł/dzień"
+                  />
+                  <button
+                    type="button"
+                    class="decrement"
+                    onclick="changeValue('snowChains', -1)"
+                  >
+                    -
+                  </button>
+                  <button
+                    type="button"
+                    class="increment"
+                    onclick="changeValue('snowChains', 1)"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
             </div>
-            <button type="button" class="diffrrento" onclick="calculateCost()">Oblicz Koszt</button>
+            <!-- Pole Nawigacja -->
+            <div class="row navigation-row">
+              <label
+                ><i class="fas fa-map-marked-alt"></i> Nawigacja 20
+                zł/dzień</label
+              >
+              <button type="button" id="navigationToggle" class="toggle-btn">
+                Wybierz
+              </button>
+            </div>
+          </div>
+          <button type="button" class="diffrrento" onclick="calculateCost()">
+            Oblicz Koszt
+          </button>
         </form>
         <!-- Dodano klasę hidden -->
         <div id="result" class="hidden"></div>
-        <div id="loadingSpinner" class="spinner" style="display:none;"></div>
-    </div>
-    
-    <footer class="footer">
-        <div class="item">
-            <i class="fas fa-thumbs-up icon"></i>
-            <div class="content">
-                <span class="highlight">100%</span>
-                <p>zadowolenia klientów</p>
-            </div>
-        </div>
-        <div class="item">
-            <i class="fas fa-calculator icon"></i>
-            <div class="content">
-                <span class="highlight">5000</span>
-                <p>kosztów obliczonych</p>
-            </div>
-        </div>
-    </footer>
-</body>
+        <div id="loadingSpinner" class="spinner" style="display: none"></div>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
 </html>
