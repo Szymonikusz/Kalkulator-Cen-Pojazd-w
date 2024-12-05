@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator Kosztów Wynajmu Samochodu</title>
     <link rel="stylesheet" href="./style.css" />
-    <!-- SweetAlert2 CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
@@ -14,14 +13,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <!-- Główny skrypt JS -->
-
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -42,29 +37,27 @@
       </div>
     </div>
     <main>
-      <footer class="footer container">
-        <div class="item">
+      <section class="statistics-container container">
+        <div class="stat-item">
           <i class="fas fa-thumbs-up icon"></i>
           <div class="content">
             <span class="highlight">100%</span>
             <p>zadowolenia klientów</p>
           </div>
         </div>
-        <div class="item">
+        <div class="stat-item">
           <i class="fas fa-calculator icon"></i>
           <div class="content">
             <span class="highlight">5000</span>
             <p>kosztów obliczonych</p>
           </div>
         </div>
-      </footer>
+      </section>
       <div class="calculator-container">
         <div class="band"></div>
         <h1>Kalkulator Kosztów Wynajmu Samochodu</h1>
-        <!-- Pierwszy nagłówek pod głównym tytułem -->
         <h2 class="section-header">Informacje o Aucie:</h2>
         <form id="rentalForm">
-          <!-- Pierwszy rząd -->
           <div class="row-container">
             <div class="row">
               <label for="distance"
@@ -129,7 +122,6 @@
             </div>
           </div>
 
-          <!-- Drugi rząd -->
           <div class="row-container">
             <div class="row">
               <label for="rentalDate"
@@ -169,7 +161,6 @@
             </div>
           </div>
 
-          <!-- Trzeci rząd -->
           <div class="row-container">
             <div class="row">
               <label for="carBrand"
@@ -208,7 +199,6 @@
               </div>
             </div>
           </div>
-          <!-- Piąty rząd -->
           <div class="row">
             <label for="fuelConsumption"
               ><i class="fas fa-tachometer-alt"></i> Średnie spalanie
@@ -238,11 +228,8 @@
                 +
               </button>
             </div>
-            <!-- Drugi nagłówek pod "Średnie spalanie (l/100km)" -->
             <h2 class="section-header">Dodatki:</h2>
-            <!-- Pola dodatków -->
             <div class="row-container">
-              <!-- Fotelik dla dziecka -->
               <div class="row">
                 <label for="childSeat"
                   ><i class="fas fa-baby-carriage"></i> Fotelik dla
@@ -274,7 +261,6 @@
                 </div>
               </div>
 
-              <!-- Łańcuchy śnieżne (komplet) -->
               <div class="row">
                 <label for="snowChains"
                   ><i class="fas fa-snowflake"></i> Łańcuchy śnieżne
@@ -306,7 +292,6 @@
                 </div>
               </div>
             </div>
-            <!-- Pole Nawigacja -->
             <div class="row navigation-row">
               <label
                 ><i class="fas fa-map-marked-alt"></i> Nawigacja 20
@@ -321,7 +306,6 @@
             Oblicz Koszt
           </button>
         </form>
-        <!-- Dodano klasę hidden -->
         <div id="result" class="hidden"></div>
         <div id="loadingSpinner" class="spinner" style="display: none"></div>
       </div>

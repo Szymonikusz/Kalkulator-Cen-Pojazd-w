@@ -1,51 +1,40 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
-
 *,
 *::after,
 *::before {
   box-sizing: border-box;
 }
-
 body {
-  font-family: "Poppins", sans-serif; /* Zastosowanie tylko w body */
+  font-family: "Poppins", sans-serif;
   background-color: #eef3fb;
   min-height: 100vh;
   margin: 0;
   padding-bottom: 40px;
 }
-
 input,
 select {
   font-family: inherit;
 }
-
 main {
-  margin-top: 60px; /* Przesunięcie kalkulatora w górę */
+  margin-top: 60px;
 }
-
 .container {
   max-width: 1200px;
-  margin: 0 auto; /* Centrowanie */
-  padding: 0 15px; /* Odstęp od krawędzi */
+  margin: 0 auto;
+  padding: 0 15px;
 }
-
 .calculator-container {
-  margin-top: 20px;
   overflow: hidden;
   position: relative;
-  background-color: #fff; /* Białe tło kalkulatora */
+  background-color: #fff;
   padding: 20px;
   border-radius: 16px;
   max-width: 870px;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 6rem;
-  padding-right: 6rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto 0 auto;
 }
-
 .band {
   border: 0 solid #e5e7eb;
   position: absolute;
@@ -56,7 +45,6 @@ main {
   background-color: rgb(52 168 83/1);
   opacity: 0.5;
 }
-
 h1 {
   font-size: 30px;
   line-height: 36px;
@@ -66,27 +54,22 @@ h1 {
   text-align: center;
   margin-bottom: 10px;
 }
-
 h2.section-header {
-  margin-top: 15px; /* Zmniejsz odstęp nad nagłówkiem sekcji */
-  margin-bottom: 10px; /* Zmniejsz odstęp poniżej nagłówka sekcji */
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 .row-container {
   display: flex;
   justify-content: space-between;
-  gap: 40px; /* Odstęp poziomy między polami w tym samym rzędzie */
-  margin-bottom: 20px; /* Odstęp między rzędami */
+  gap: 40px;
+  margin-bottom: 20px;
 }
-
-/* Dodanie odstępu między rzędem a kolejnym rzędem */
 .row-container + .row-container {
-  margin-top: 20px; /* Dodaj odstęp pionowy między kontenerami rzędów */
+  margin-top: 20px;
 }
-
 .row-container .row {
   flex: 1;
 }
-
 .row input,
 .row select {
   width: 100%;
@@ -99,15 +82,13 @@ h2.section-header {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, transform 0.2s;
 }
-
 .row label {
   margin-bottom: 5px;
   color: #000;
 }
-
 button {
   background: linear-gradient(135deg, #f1f1f1, #f1f1f1);
-  color: #fff; /* Biały tekst */
+  color: #fff;
   padding: 15px 30px;
   border-radius: 10px;
   font-size: 16px;
@@ -120,34 +101,29 @@ button {
   margin-right: 0, 5px;
   font-weight: bold;
 }
-
 button:hover {
   background: #303031;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
-
 .diffrrento {
   background: linear-gradient(135deg, #1e88e5, #2196f3);
 }
 .diffrrento:hover {
   background: linear-gradient(135deg, #2196f3, #1e88e5);
 }
-
 button:active {
   transform: scale(0.98);
 }
-
 #result {
   margin-top: 20px;
   font-size: 18px;
-  background-color: #f9f9f9; /* Jasny kolor wyników */
-  color: #4caf50; /* Zielony tekst wyników */
+  background-color: #f9f9f9;
+  color: #4caf50;
   padding: 5px;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .spinner {
   border: 8px solid rgba(0, 0, 0, 0.1);
   border-top: 8px solid #4caf50;
@@ -161,7 +137,60 @@ button:active {
   transform: translate(-50%, -50%);
   z-index: 9999;
 }
-
+.user-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 20px;
+  z-index: 9999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.user-bar-left {
+  flex: 1;
+}
+.user-bar-right {
+  display: flex;
+  gap: 10px;
+}
+.user-bar-right a {
+  color: #000;
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.user-bar-right a:hover {
+  color: #555;
+}
+.navigation-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.toggle-btn {
+  background: linear-gradient(135deg, #1e88e5, #2196f3);
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: 150px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.toggle-btn:hover {
+  background: linear-gradient(135deg, #2196f3, #1e88e5);
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -170,26 +199,20 @@ button:active {
     transform: rotate(360deg);
   }
 }
-
-/* Styl dla kontenera z polem i przyciskami */
 .input-wrapper {
   display: flex;
   align-items: center;
   position: relative;
 }
-
-/* Dopasowanie pola w kontenerze */
 .input-wrapper input {
-  flex: 1; /* Pole zajmuje maksymalną szerokość */
-  padding-right: 60px; /* Miejsce na przyciski */
+  flex: 1;
+  padding-right: 60px;
 }
-
-/* Styl dla przycisków "+" i "-" */
 .input-wrapper button {
   position: absolute;
-  background-color: transparent; /* Transparentne tło */
-  border: 2px solid #d1d5db; /* Szare obramowanie */
-  color: #555; /* Szary kolor tekstu (ikony) */
+  background-color: transparent;
+  border: 2px solid #d1d5db;
+  color: #555;
   width: 30px;
   height: 35px;
   font-size: 18px;
@@ -200,278 +223,174 @@ button:active {
   transition: all 0.3s ease;
   border-radius: 8px;
 }
-
-/* Efekt hover dla przycisków "+" i "-" */
 .input-wrapper button:hover {
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.05
-  ); /* Subtelny ciemniejszy odcień na hover */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-/* Zaokrąglone rogi */
 .input-wrapper .decrement {
-  right: 65px; /* Pozycja przycisku "-" */
+  right: 65px;
 }
-
 .input-wrapper .increment {
-  right: 1px; /* Pozycja przycisku "+" */
+  right: 1px;
 }
-
-/* Efekt aktywacji dla przycisków "+" i "-" */
 .input-wrapper button:active {
   transform: scale(0.95);
   background-color: rgba(0, 0, 0, 0.1);
 }
-
-.footer {
-  width: 90%; /* Pasek zajmuje 90% szerokości ekranu */
-  max-width: 1200px; /* Maksymalna szerokość paska (dla dużych ekranów) */
-  background-color: #fff; /* Białe tło */
-  color: #333; /* Ciemny kolor tekstu */
+.statistics-container {
+  width: 90%;
+  max-width: 1200px;
+  background-color: #fff;
+  color: #333;
   text-align: center;
-  padding: 5px 0; /* Zwiększenie wysokości paska (grubszy pasek) */
-  font-size: 18px; /* Zwiększenie rozmiaru czcionki */
-  font-weight: bold; /* Wytłuszczenie tekstu */
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Delikatny cień u góry paska */
-  border-radius: 20px; /* Zaokrąglone boki paska */
-  display: flex; /* Użycie flexboxa */
-  justify-content: space-around; /* Rozmieszczenie elementów */
-  align-items: flex-start; /* Wyrównanie elementów w górę */
-  gap: 60px; /* Odstęp między sekcjami */
+  padding: 5px 0;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 60px;
+}
+.statistics-container .stat-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
-/* Styl dla każdej sekcji z ikoną i tekstem */
+.statistics-container .icon {
+  flex-shrink: 0; 
+}
+
+.statistics-container .content {
+  text-align: left;
+}
 .item {
   display: flex;
-  flex-direction: row;
-  align-items: center; /* Wyrównanie elementów w poziomie */
+  align-items: center;
   justify-content: center;
 }
-
-/* Styl dla ikonek przed tekstem */
 .icon {
-  font-size: 32px; /* Zwiększenie rozmiaru ikony */
-  margin-bottom: 8px; /* Odstęp między ikoną a liczbą */
-  color: #333; /* Kolor ikony (czarny) */
-  background-color: #eef3fb; /* Tło ikony (kolor kalkulatora) */
-  border: 3px solid #fff; /* Białe obramowanie (grubsze) */
-  border-radius: 10px; /* Zaokrąglone rogi */
-  padding: 12px; /* Zwiększony odstęp wewnętrzny, aby ikona miała więcej przestrzeni */
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: #333;
+  background-color: #eef3fb;
+  border: 3px solid #fff;
+  border-radius: 10px;
+  padding: 12px;
   margin-right: 0.5rem;
 }
-
-/* Styl dla liczb wytłuszczonych */
-.footer .highlight {
-  color: #4caf50; /* Zielony kolor dla liczb */
-  font-size: 24px; /* Zwiększenie rozmiaru czcionki dla liczb */
-  font-weight: bold; /* Wytłuszczenie tekstu */
+.statistics-container .highlight {
+  color: #4caf50;
+  font-size: 24px;
+  font-weight: bold;
 }
-
-/* Stylowanie dla tekstu w stopce */
-.footer p {
+.statistics-container p {
   margin: 0;
-  font-size: 18px; /* Mniejszy rozmiar tekstu */
-  font-weight: normal; /* Normalne wytłuszczenie */
-  letter-spacing: 0; /* Brak odstępu między literami */
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 0;
 }
-
 .content {
   text-align: left;
 }
-
 .hidden {
   display: none;
 }
-
-@media (max-width: 768px) {
-  body {
-    align-items: flex-start;
-    height: auto;
-  }
-
+@media (max-width: 768px) {  
   .container {
     padding: 1rem;
     margin-top: 70px;
     width: 95%;
   }
-
   .row-container {
-    flex-direction: column; /* Ułóż pola jedno pod drugim */
+    flex-direction: column;
     gap: 20px;
   }
-
   .row {
-    width: 100%; /* Pola zajmują pełną szerokość */
+    width: 100%;  
   }
-
   .row label {
     font-size: 14px;
   }
-
   h1 {
     font-size: 24px;
     line-height: 30px;
   }
-
   button {
     padding: 10px 20px;
     font-size: 14px;
   }
-
-  .footer {
+  .statistics-container {
     flex-direction: column;
     align-items: center;
     gap: 20px;
     padding: 15px;
-    position: static; /* Stopka nie jest przyklejona na małych ekranach */
+    position: static; 
   }
-
-  .footer .item {
-    flex-direction: row; /* Ikony i tekst obok siebie */
-    justify-content: center;
-  }
-
-  .footer .icon {
+  .statistics-container .icon {
     margin-bottom: 0;
     margin-right: 10px;
   }
-
   .input-wrapper button {
     width: 40px;
     height: 40px;
     font-size: 18px;
   }
-
   #result {
     font-size: 16px;
     padding: 10px;
   }
-
   .spinner {
     width: 50px;
     height: 50px;
   }
 }
-
 @media (max-width: 480px) {
   .container {
     padding: 0.5rem;
   }
-
   h1 {
     font-size: 20px;
   }
-
   button {
     font-size: 12px;
   }
-
-  .footer .highlight {
+  .statistics-container .highlight {
     font-size: 16px;
   }
 }
-
 @media (max-width: 769px) {
   body {
-    display: block; /* Wyłączenie flexbox */
     padding-bottom: 20px;
   }
 
-  .footer {
-    transform: none; /* Usunięcie przesunięcia */
-    left: auto; /* Opcjonalne wyśrodkowanie */
-    padding: 20px 0; /* Ustawienie paddingu: 20px góra i dół, 0 boki */
-    width: auto; /* Wyłączenie szerokości 90% */
-    margin: 0 auto; /* Wyśrodkowanie stopki */
-    text-align: center; /* Wyśrodkowanie zawartości */
+  .statistics-container {
+    padding: 20px 0;
+    width: auto;
+    margin: 0 auto;
+    text-align: center;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
   }
 }
-.user-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #000; /* Czarny tekst */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 5px 20px; /* Odstęp wewnętrzny */
-  z-index: 9999; /* Na wierzchu wszystkich elementów */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtelny cień */
-}
-
-.user-bar-left {
-  flex: 1; /* Rozciągnij do lewej strony */
-}
-
-.user-bar-right {
-  display: flex;
-  gap: 10px; /* Odstęp między ikonami */
-}
-
-.user-bar-right a {
-  color: #000; /* Kolor ikon */
-  font-size: 20px; /* Rozmiar ikon */
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.user-bar-right a:hover {
-  color: #555; /* Zmiana koloru ikon po najechaniu */
-}
-
-.navigation-row {
-  display: flex;
-  justify-content: space-between; /* Tekst po lewej, przycisk po prawej */
-  align-items: center;
-  margin-top: 10px; /* Odstęp od poprzedniego pola */
-}
-
-.toggle-btn {
-  background: linear-gradient(135deg, #1e88e5, #2196f3);
-  color: #fff;
-  border: none;
-  padding: 8px 15px; /* Zachowujemy smukły padding */
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  text-align: center;
-  width: 150px; /* Ustawiamy stałą szerokość przycisku */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Delikatny cień */
-}
-
-.toggle-btn:hover {
-  background: linear-gradient(135deg, #2196f3, #1e88e5);
-}
 
 @media (max-width: 768px) {
-  /* Zmiana w układzie input + button */
   .input-wrapper {
     display: flex;
     align-items: center;
     position: relative;
     width: 100%;
   }
-
   .input-wrapper input {
-    text-align: center; /* Wyśrodkowanie zawartości i placeholdera */
+    text-align: center;
     flex: 1;
-    padding-left: 40px; /* Miejsce na przycisk "-" po lewej stronie */
-    padding-right: 40px; /* Miejsce na przycisk "+" po prawej stronie */
+    padding-left: 40px;
+    padding-right: 40px;
   }
-
-  /* Przycisk "-" po lewej stronie */
   .input-wrapper .decrement {
     position: absolute;
     left: 0;
@@ -485,8 +404,6 @@ button:active {
     border: 2px solid #d1d5db;
     color: #555;
   }
-
-  /* Przycisk "+" po prawej stronie */
   .input-wrapper .increment {
     position: absolute;
     right: 0;
@@ -502,17 +419,15 @@ button:active {
   }
 }
 .section-header {
-  font-size: 18px; /* Rozmiar czcionki */
-  font-weight: 600; /* Pogrubienie tekstu */
-  color: #333; /* Kolor tekstu */
-  margin: 20px 0 10px; /* Odstęp nad i pod nagłówkiem */
-  text-align: left; /* Wyrównanie do lewej strony */
-  padding-left: 10px; /* Odstęp od lewej strony */
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 20px 0 10px;
+  text-align: left;
+  padding-left: 10px;
 }
-
-/* Nagłówek w wersji mobilnej (jeśli chcesz go dopasować) */
 @media (max-width: 768px) {
   .section-header {
-    font-size: 16px; /* Zmniejszenie czcionki na mniejszych ekranach */
+    font-size: 16px;
   }
 }
