@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtr Samochodów</title>
+    <link rel="stylesheet" href="Filtr.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="filter-container">
+        <h1>Filtr Samochodów</h1>
+        <form id="filterForm" onsubmit="submitFilter(event)">
+            <!-- Minimalna ilość miejsc -->
+            <div class="category-header">
+                <span class="category-line"></span>
+                <span class="category-title">Minimalna ilość miejsc</span>
+            </div>
+            <div class="slider-container">
+                <div class="range-wrapper">
+                    <input type="range" id="seats" name="seats" min="1" max="7" value="1">
+                    <span id="seatsValue" class="range-value">1</span>
+                </div>
+            </div>
+
+            <!-- Klasa pojazdu -->
+            <div class="category-header">
+                <span class="category-line"></span>
+                <span class="category-title">Klasa pojazdu</span>
+            </div>
+            <div class="vehicle-class">
+                <button type="button" onclick="selectClass('B')">B</button>
+                <button type="button" onclick="selectClass('C')">C</button>
+                <button type="button" onclick="selectClass('D')">D</button>
+                <button type="button" onclick="selectClass('E')">E</button>
+                <button type="button" onclick="selectClass('F')">F</button>
+                <button type="button" onclick="selectClass('L')">L</button>
+                <button type="button" onclick="selectClass('P')">P</button>
+                <button type="button" onclick="selectClass('P+')">P+</button>
+                <button type="button" onclick="selectClass('R')">R</button>
+                <button type="button" onclick="selectClass('R+')">R+</button>
+                <button type="button" onclick="selectClass('S')">S</button>
+                <button type="button" onclick="selectClass('S+')">S+</button>
+            </div>
+            <input type="hidden" id="vehicleClass" name="vehicleClass">
+
+            <!-- Skrzynia biegów -->
+<div class="category-header">
+    <span class="category-line"></span>
+    <span class="category-title">Skrzynia biegów</span>
+</div>
+<div class="options-grid">
+    <div class="option">
+        <div class="icon"><i class="fa-solid fa-gears"></i></div>
+        <input type="radio" id="manual" name="gearbox" value="Manualna">
+        <label for="manual">Manualna</label>
+    </div>
+    <div class="option">
+        <div class="icon"><i class="fa-solid fa-robot"></i></div>
+        <input type="radio" id="automatic" name="gearbox" value="Automatyczna">
+        <label for="automatic">Automatyczna</label>
+    </div>
+</div>
+
+<!-- Rodzaj paliwa -->
+<div class="category-header">
+    <span class="category-line"></span>
+    <span class="category-title">Rodzaj paliwa</span>
+</div>
+<div class="options-grid">
+    <div class="option">
+        <div class="icon"><i class="fa-solid fa-gas-pump"></i></div>
+        <input type="radio" id="petrol" name="fuel" value="Benzyna">
+        <label for="petrol">Benzyna</label>
+    </div>
+    <div class="option">
+        <div class="icon"><i class="fa-solid fa-oil-can"></i></div>
+        <input type="radio" id="diesel" name="fuel" value="Diesel">
+        <label for="diesel">Diesel</label>
+    </div>
+</div>
+
+
+            <!-- Cena -->
+            <div class="category-header">
+                <span class="category-line"></span>
+                <span class="category-title">Cena</span>
+            </div>
+            <div class="slider-container">
+                <div class="range-wrapper">
+                    <input type="range" id="price" name="price" min="50" max="400" value="50">
+                    <span id="priceValue">50 zł</span>
+                </div>
+            </div>
+
+            <button type="submit" class="filter-btn">Filtruj</button>
+        </form>
+    </div>
+    <script src="Filtr.js"></script>
+</body>
+</html>
