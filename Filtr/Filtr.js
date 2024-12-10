@@ -141,3 +141,127 @@ document.querySelectorAll(".option").forEach(option => {
         this.querySelector("input[type='radio']").checked = true;
     });
 });
+
+// URL do API
+const apicarsURL = 'https://run.mocky.io/v3/e9423d0c-6069-4834-b29b-f177a88750da';
+
+// Funkcja pobierająca dane z API
+async function fetchData() {
+  try {
+    const response = await fetch(apicarsURL);
+    if (!response.ok) {
+      throw new Error(`Błąd HTTP! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    displayCars(data);
+  } catch (error) {
+    console.error('Wystąpił błąd:', error);
+  }
+}
+
+// Funkcja wyświetlająca dane samochodów
+function displayCars(cars) {
+  const container = document.getElementById('cars-container');
+
+  cars.forEach(car => {
+    // Główny kontener samochodu
+    const carElement = document.createElement('div');
+    carElement.classList.add('car');
+
+    // Obraz samochodu
+    const carImage = document.createElement('img');
+    carImage.src = `https://eurologic.rentcarsoft.pl/grafiki/oferta/256/${car.imageIdentifier}`; // Dostosuj URL obrazka
+    carImage.alt = car.name;
+
+    // Detale samochodu
+    const carDetails = document.createElement('div');
+    carDetails.classList.add('car-details');
+
+    // Tytuł samochodu
+    const carTitle = document.createElement('h2');
+    carTitle.classList.add('car-title');
+    carTitle.textContent = `${car.name} (${car.branchName})`;
+
+    // Cena samochodu
+    const carPrice = document.createElement('p');
+    carPrice.classList.add('car-price');
+    carPrice.textContent = `Cena: ${car.dailyPriceWithVAT} PLN/dzień`;
+
+    // Atrybuty samochodu
+    const carAttributes = document.createElement('ul');
+    carAttributes.classList.add('car-attributes');
+    car.attributes.forEach(attribute => {
+      const attributeItem = document.createElement('li');
+      attributeItem.textContent = attribute;
+      carAttributes.appendChild(attributeItem);
+    });
+
+    // Dodaj elementy do detali
+    carDetails.appendChild(carTitle);
+    carDetails.appendChild(carPrice);
+    carDetails.appendChild(carAttributes);
+
+    // Dodaj obraz i detale do głównego kontenera
+    carElement.appendChild(carImage);
+    carElement.appendChild(carDetails);
+
+    // Dodaj samochód do kontenera strony
+    container.appendChild(carElement);
+  });
+}
+
+// Wywołanie funkcji fetchData po załadowaniu strony
+document.addEventListener('DOMContentLoaded', fetchData);
+function displayCars(cars) {
+    const container = document.getElementById('cars-container');
+    container.innerHTML = ""; // Wyczyszczenie zawartości przed wyświetleniem nowych danych
+
+    cars.forEach(car => {
+        // Główny kontener samochodu
+        const carElement = document.createElement('div');
+        carElement.classList.add('car');
+
+        // Obraz samochodu
+        const carImage = document.createElement('img');
+        carImage.src = `https://eurologic.rentcarsoft.pl/grafiki/oferta/256/${car.imageIdentifier}`;
+        carImage.alt = car.name;
+
+        // Detale samochodu
+        const carDetails = document.createElement('div');
+        carDetails.classList.add('car-details');
+
+        // Tytuł samochodu
+        const carTitle = document.createElement('h2');
+        carTitle.classList.add('car-title');
+        carTitle.textContent = `${car.name} (${car.branchName})`;
+
+        // Cena samochodu
+        const carPrice = document.createElement('p');
+        carPrice.classList.add('car-price');
+
+        // Formatowanie ceny (2 miejsca po przecinku, konwersja do liczby)
+        const formattedPrice = parseFloat(car.dailyPriceWithVAT).toFixed(2);
+        carPrice.textContent = `Cena: ${formattedPrice} PLN/dzień`;
+
+        // Atrybuty samochodu
+        const carAttributes = document.createElement('ul');
+        carAttributes.classList.add('car-attributes');
+        car.attributes.forEach(attribute => {
+            const attributeItem = document.createElement('li');
+            attributeItem.textContent = attribute;
+            carAttributes.appendChild(attributeItem);
+        });
+
+        // Dodaj elementy do detali
+        carDetails.appendChild(carTitle);
+        carDetails.appendChild(carPrice);
+        carDetails.appendChild(carAttributes);
+
+        // Dodaj obraz i detale do głównego kontenera
+        carElement.appendChild(carImage);
+        carElement.appendChild(carDetails);
+
+        // Dodaj samochód do kontenera strony
+        container.appendChild(carElement);
+    });
+}

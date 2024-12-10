@@ -51,12 +51,16 @@
 </div>
 <div class="options-grid">
     <div class="option">
-        <div class="icon"><i class="fa-solid fa-gears"></i></div>
+        <div class="icon">
+            <img src="/filtr/assets/Manual.svg" alt="">
+        </div>
         <input type="radio" id="manual" name="gearbox" value="Manualna">
         <label for="manual">Manualna</label>
     </div>
     <div class="option">
-        <div class="icon"><i class="fa-solid fa-robot"></i></div>
+        <div class="icon">
+            <img src="/filtr/assets/Automatic.svg" alt="">
+            <i class="fa-solid fa-robot"></i></div>
         <input type="radio" id="automatic" name="gearbox" value="Automatyczna">
         <label for="automatic">Automatyczna</label>
     </div>
@@ -69,12 +73,16 @@
 </div>
 <div class="options-grid">
     <div class="option">
-        <div class="icon"><i class="fa-solid fa-gas-pump"></i></div>
+        <div class="icon">
+            <img src="/filtr/assets/Gas.svg" alt="">
+            <i class="fa-solid fa-gas-pump"></i></div>
         <input type="radio" id="petrol" name="fuel" value="Benzyna">
         <label for="petrol">Benzyna</label>
     </div>
     <div class="option">
-        <div class="icon"><i class="fa-solid fa-oil-can"></i></div>
+        <div class="icon">
+            <img src="/filtr/assets/Diesel.svg" alt="">
+            <i class="fa-solid fa-oil-can"></i></div>
         <input type="radio" id="diesel" name="fuel" value="Diesel">
         <label for="diesel">Diesel</label>
     </div>
@@ -96,6 +104,7 @@
             <button type="submit" class="filter-btn">Filtruj</button>
         </form>
     </div>
+    <div id="cars-container"></div>
     <script src="Filtr.js"></script>
 </body>
 </html>
