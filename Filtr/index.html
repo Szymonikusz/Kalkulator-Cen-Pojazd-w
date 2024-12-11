@@ -29,21 +29,20 @@
                 <span class="category-title">Klasa pojazdu</span>
             </div>
             <div class="vehicle-class">
-                <button type="button" onclick="selectClass('B')">B</button>
-                <button type="button" onclick="selectClass('C')">C</button>
-                <button type="button" onclick="selectClass('D')">D</button>
-                <button type="button" onclick="selectClass('E')">E</button>
-                <button type="button" onclick="selectClass('F')">F</button>
-                <button type="button" onclick="selectClass('L')">L</button>
-                <button type="button" onclick="selectClass('P')">P</button>
-                <button type="button" onclick="selectClass('P+')">P+</button>
-                <button type="button" onclick="selectClass('R')">R</button>
-                <button type="button" onclick="selectClass('R+')">R+</button>
-                <button type="button" onclick="selectClass('S')">S</button>
-                <button type="button" onclick="selectClass('S+')">S+</button>
+                <button data-class="B">B</button>
+                <button data-class="C">C</button>
+                <button data-class="D">D</button>
+                <button data-class="E">E</button>
+                <button data-class="F">F</button>
+                <button data-class="L">L</button>
+                <button data-class="P">P</button>
+                <button data-class="P+">P+</button>
+                <button data-class="R">R</button>
+                <button data-class="R+">R+</button>
+                <button data-class="S">S</button>
+                <button data-class="S+">S+</button>
             </div>
             <input type="hidden" id="vehicleClass" name="vehicleClass">
-
             <!-- Skrzynia biegów -->
 <div class="category-header">
     <span class="category-line"></span>
@@ -74,15 +73,15 @@
 <div class="options-grid">
     <div class="option">
         <div class="icon">
-            <img src="/filtr/assets/Gas.svg" alt="">
-            <i class="fa-solid fa-gas-pump"></i></div>
+            <img src="/filtr/assets/Gas.svg" alt="Ikona Benzyny">
+        </div>
         <input type="radio" id="petrol" name="fuel" value="Benzyna">
         <label for="petrol">Benzyna</label>
     </div>
     <div class="option">
         <div class="icon">
-            <img src="/filtr/assets/Diesel.svg" alt="">
-            <i class="fa-solid fa-oil-can"></i></div>
+            <img src="/filtr/assets/Diesel.svg" alt="Ikona Diesla">
+        </div>
         <input type="radio" id="diesel" name="fuel" value="Diesel">
         <label for="diesel">Diesel</label>
     </div>
@@ -104,7 +103,8 @@
             <button type="submit" class="filter-btn">Filtruj</button>
         </form>
     </div>
-    <div id="cars-container"></div>
+    <div id="cars-container" style="float: right; width: 50%;"></div>
+    <div id="pagination-container" style="text-align: center; margin-top: 20px;"></div>
     <script src="Filtr.js"></script>
 </body>
 </html>

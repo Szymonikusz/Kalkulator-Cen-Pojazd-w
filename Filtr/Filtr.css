@@ -8,6 +8,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow-y: auto;
   }
   .filter-container {
   background: white;
@@ -289,5 +290,62 @@ body {
   color: #666;
   }
   #cars-container {
-    margin-top: 3600px;
+    margin-top: 900px;
+}
+.pagination-button {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination-button.active {
+  background-color: #28a745;
+  color: white;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 5px;
+}
+
+.pagination-arrow {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  background-color: #f0f0f0;
+  color: #555;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination-arrow:hover {
+  background-color: #007bff;
+  color: white;
+}
+.options-grid .icon img {
+  width: 30px; /* Zwiększ szerokość ikony */
+  height: auto; /* Zachowaj proporcje */
 }
