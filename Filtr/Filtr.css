@@ -290,7 +290,7 @@ body {
   color: #666;
   }
   #cars-container {
-    margin-top: 900px;
+    max-height: 870px;
 }
 .pagination-button {
   display: inline-block;
@@ -346,6 +346,36 @@ body {
   color: white;
 }
 .options-grid .icon img {
-  width: 30px; /* Zwiększ szerokość ikony */
-  height: auto; /* Zachowaj proporcje */
+  width: 30px;
+  height: auto; 
+}
+#pagination-container {
+  position: fixed; 
+  bottom: 0; 
+  left: 0;
+  width: 100%; 
+  background-color: white; 
+  z-index: 100; 
+  text-align: center;
+  padding: 10px 0; 
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+#footer-placeholder {
+  height: 220px; 
+  background-color: transparent;
+}
+.calculator-btn {
+  background-color: #007bff; /* Niebieski kolor */
+  color: white; /* Kolor tekstu */
+  border: none; /* Brak obramowania */
+  padding: 10px 20px; /* Dodanie przestrzeni wewnętrznej */
+  font-size: 14px; /* Rozmiar tekstu */
+  border-radius: 4px; /* Zaokrąglone rogi */
+  cursor: pointer; /* Zmiana kursora na wskaźnik */
+  font-family: "Poppins", sans-serif; /* Konsystencja z innymi elementami */
+  transition: background-color 0.3s ease; /* Płynna zmiana koloru */
+}
+
+.calculator-btn:hover {
+  background-color: #0056b3; /* Ciemniejszy kolor na hover */
 }

@@ -1,110 +1,138 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Filtr Samochodów</title>
-    <link rel="stylesheet" href="Filtr.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="Filtr.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="filter-container">
-        <h1>Filtr Samochodów</h1>
-        <form id="filterForm" onsubmit="submitFilter(event)">
-            <!-- Minimalna ilość miejsc -->
-            <div class="category-header">
-                <span class="category-line"></span>
-                <span class="category-title">Minimalna ilość miejsc</span>
-            </div>
-            <div class="slider-container">
-                <div class="range-wrapper">
-                    <input type="range" id="seats" name="seats" min="1" max="7" value="1">
-                    <span id="seatsValue" class="range-value">1</span>
-                </div>
-            </div>
-
-            <!-- Klasa pojazdu -->
-            <div class="category-header">
-                <span class="category-line"></span>
-                <span class="category-title">Klasa pojazdu</span>
-            </div>
-            <div class="vehicle-class">
-                <button data-class="B">B</button>
-                <button data-class="C">C</button>
-                <button data-class="D">D</button>
-                <button data-class="E">E</button>
-                <button data-class="F">F</button>
-                <button data-class="L">L</button>
-                <button data-class="P">P</button>
-                <button data-class="P+">P+</button>
-                <button data-class="R">R</button>
-                <button data-class="R+">R+</button>
-                <button data-class="S">S</button>
-                <button data-class="S+">S+</button>
-            </div>
-            <input type="hidden" id="vehicleClass" name="vehicleClass">
-            <!-- Skrzynia biegów -->
-<div class="category-header">
-    <span class="category-line"></span>
-    <span class="category-title">Skrzynia biegów</span>
-</div>
-<div class="options-grid">
-    <div class="option">
-        <div class="icon">
-            <img src="/filtr/assets/Manual.svg" alt="">
+      <h1>Filtr Samochodów</h1>
+      <form id="filterForm" onsubmit="submitFilter(event)">
+        <!-- Minimalna ilość miejsc -->
+        <div class="category-header">
+          <span class="category-line"></span>
+          <span class="category-title">Minimalna ilość miejsc</span>
         </div>
-        <input type="radio" id="manual" name="gearbox" value="Manualna">
-        <label for="manual">Manualna</label>
-    </div>
-    <div class="option">
-        <div class="icon">
-            <img src="/filtr/assets/Automatic.svg" alt="">
-            <i class="fa-solid fa-robot"></i></div>
-        <input type="radio" id="automatic" name="gearbox" value="Automatyczna">
-        <label for="automatic">Automatyczna</label>
-    </div>
-</div>
-
-<!-- Rodzaj paliwa -->
-<div class="category-header">
-    <span class="category-line"></span>
-    <span class="category-title">Rodzaj paliwa</span>
-</div>
-<div class="options-grid">
-    <div class="option">
-        <div class="icon">
-            <img src="/filtr/assets/Gas.svg" alt="Ikona Benzyny">
+        <div class="slider-container">
+          <div class="range-wrapper">
+            <input
+              type="range"
+              id="seats"
+              name="seats"
+              min="1"
+              max="7"
+              value="1"
+            />
+            <span id="seatsValue" class="range-value">1</span>
+          </div>
         </div>
-        <input type="radio" id="petrol" name="fuel" value="Benzyna">
-        <label for="petrol">Benzyna</label>
-    </div>
-    <div class="option">
-        <div class="icon">
-            <img src="/filtr/assets/Diesel.svg" alt="Ikona Diesla">
+
+        <!-- Klasa pojazdu -->
+        <div class="category-header">
+          <span class="category-line"></span>
+          <span class="category-title">Klasa pojazdu</span>
         </div>
-        <input type="radio" id="diesel" name="fuel" value="Diesel">
-        <label for="diesel">Diesel</label>
-    </div>
-</div>
-
-
-            <!-- Cena -->
-            <div class="category-header">
-                <span class="category-line"></span>
-                <span class="category-title">Cena</span>
+        <div class="vehicle-class">
+          <button data-class="B">B</button>
+          <button data-class="C">C</button>
+          <button data-class="D">D</button>
+          <button data-class="E">E</button>
+          <button data-class="F">F</button>
+          <button data-class="L">L</button>
+          <button data-class="P">P</button>
+          <button data-class="P+">P+</button>
+          <button data-class="R">R</button>
+          <button data-class="R+">R+</button>
+          <button data-class="S">S</button>
+          <button data-class="S+">S+</button>
+        </div>
+        <input type="hidden" id="vehicleClass" name="vehicleClass" />
+        <!-- Skrzynia biegów -->
+        <div class="category-header">
+          <span class="category-line"></span>
+          <span class="category-title">Skrzynia biegów</span>
+        </div>
+        <div class="options-grid">
+          <div class="option">
+            <div class="icon">
+              <img src="/filtr/assets/Manual.svg" alt="" />
             </div>
-            <div class="slider-container">
-                <div class="range-wrapper">
-                    <input type="range" id="price" name="price" min="50" max="400" value="50">
-                    <span id="priceValue">50 zł</span>
-                </div>
+            <input type="radio" id="manual" name="gearbox" value="Manualna" />
+            <label for="manual">Manualna</label>
+          </div>
+          <div class="option">
+            <div class="icon">
+              <img src="/filtr/assets/Automatic.svg" alt="" />
+              <i class="fa-solid fa-robot"></i>
             </div>
+            <input
+              type="radio"
+              id="automatic"
+              name="gearbox"
+              value="Automatyczna"
+            />
+            <label for="automatic">Automatyczna</label>
+          </div>
+        </div>
 
-            <button type="submit" class="filter-btn">Filtruj</button>
-        </form>
+        <!-- Rodzaj paliwa -->
+        <div class="category-header">
+          <span class="category-line"></span>
+          <span class="category-title">Rodzaj paliwa</span>
+        </div>
+        <div class="options-grid">
+          <div class="option">
+            <div class="icon">
+              <img src="/filtr/assets/Gas.svg" alt="Ikona Benzyny" />
+            </div>
+            <input type="radio" id="petrol" name="fuel" value="Benzyna" />
+            <label for="petrol">Benzyna</label>
+          </div>
+          <div class="option">
+            <div class="icon">
+              <img src="/filtr/assets/Diesel.svg" alt="Ikona Diesla" />
+            </div>
+            <input type="radio" id="diesel" name="fuel" value="Diesel" />
+            <label for="diesel">Diesel</label>
+          </div>
+        </div>
+
+        <!-- Cena -->
+        <div class="category-header">
+          <span class="category-line"></span>
+          <span class="category-title">Cena</span>
+        </div>
+        <div class="slider-container">
+          <div class="range-wrapper">
+            <input
+              type="range"
+              id="price"
+              name="price"
+              min="50"
+              max="400"
+              value="50"
+            />
+            <span id="priceValue">50 zł</span>
+          </div>
+        </div>
+
+        <button type="submit" class="filter-btn">Filtruj</button>
+      </form>
     </div>
-    <div id="cars-container" style="float: right; width: 50%;"></div>
-    <div id="pagination-container" style="text-align: center; margin-top: 20px;"></div>
+    <div style="float: right; width: 50%; position: relative;">
+        <!-- Lista aut -->
+        <div id="cars-container"></div>
+        <!-- Paginacja -->
+        <div id="pagination-container"></div>
+    </div>
+    <div id="footer-placeholder"></div>
+    </div>
     <script src="Filtr.js"></script>
-</body>
+  </body>
 </html>

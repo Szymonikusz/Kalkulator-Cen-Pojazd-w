@@ -70,37 +70,20 @@ document.addEventListener("DOMContentLoaded", function () {
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error("Błąd podczas pobierania danych z API");
             const cars = await response.json();
-            const formattedCars = formatPrices(cars);
-            displayPaginatedCars(formattedCars, 1);
-            setupPagination(formattedCars);
+            displayPaginatedCars(cars, 1);
+            setupPagination(cars);
+            return cars;
         } catch (error) {
             console.error("Wystąpił błąd:", error);
         }
     }
 
-    function formatPrices(cars) {
-        return cars.map(car => {
-            return {
-                ...car,
-                dailyPriceWithVAT: parseFloat(car.dailyPriceWithVAT).toLocaleString("pl-PL", {
-                    style: "currency",
-                    currency: "PLN",
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                }),
-                priceWithVAT: parseFloat(car.priceWithVAT).toLocaleString("pl-PL", {
-                    style: "currency",
-                    currency: "PLN",
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                }),
-                monthlyPrice: parseFloat(car.monthlyPrice).toLocaleString("pl-PL", {
-                    style: "currency",
-                    currency: "PLN",
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                })
-            };
+    function formatPrice(price) {
+        return parseFloat(price).toLocaleString("pl-PL", {
+            style: "currency",
+            currency: "PLN",
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
         });
     }
 
@@ -129,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const carPrice = document.createElement("p");
             carPrice.classList.add("car-price");
-            carPrice.textContent = `Cena: ${car.dailyPriceWithVAT}`;
+            carPrice.textContent = `Cena: ${formatPrice(car.dailyPriceWithVAT)}`;
 
             const carAttributes = document.createElement("ul");
             carAttributes.classList.add("car-attributes");
@@ -143,6 +126,14 @@ document.addEventListener("DOMContentLoaded", function () {
             carDetails.appendChild(carPrice);
             carDetails.appendChild(carAttributes);
 
+            const calculatorButton = document.createElement("button");
+            calculatorButton.textContent = "Kalkulator";
+            calculatorButton.classList.add("calculator-btn");
+            calculatorButton.addEventListener("click", () => {
+                redirectToCalculator(car);
+            });
+
+            carDetails.appendChild(calculatorButton);
             carElement.appendChild(carImage);
             carElement.appendChild(carDetails);
 
@@ -206,12 +197,56 @@ document.addEventListener("DOMContentLoaded", function () {
         renderPagination();
     }
 
+    function getFilterData() {
+        const seats = document.getElementById("seats").value;
+        const vehicleClass = document.getElementById("vehicleClass").value;
+
+        const gearbox = document.querySelector("input[name='gearbox']:checked");
+        const selectedGearbox = gearbox ? gearbox.value : null;
+
+        const fuel = document.querySelector("input[name='fuel']:checked");
+        const selectedFuel = fuel ? fuel.value : null;
+
+        const price = document.getElementById("price").value;
+
+        return {
+            seats,
+            vehicleClass,
+            gearbox: selectedGearbox,
+            fuel: selectedFuel,
+            price,
+        };
+    }
+
     const filterForm = document.getElementById("filterForm");
     filterForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        const formData = new FormData(filterForm);
-        console.log("Submitted filter data:", Object.fromEntries(formData.entries()));
+
+        const filterData = getFilterData();
+        console.log("Wybrane dane filtra:", filterData);
+
+        fetchCars().then(cars => {
+            const filteredCars = filterCars(cars, filterData);
+            displayPaginatedCars(filteredCars, 1);
+            setupPagination(filteredCars);
+        });
     });
+
+    function filterCars(cars, filterData) {
+        return cars.filter(car => {
+            if (filterData.seats && car.seats < parseInt(filterData.seats)) return false;
+            if (filterData.vehicleClass && car.vehicleClass !== filterData.vehicleClass) return false;
+            if (filterData.gearbox && car.transmission !== filterData.gearbox) return false;
+            if (filterData.fuel && car.fuel !== filterData.fuel) return false;
+            if (filterData.price && car.dailyPriceWithVAT > parseInt(filterData.price)) return false;
+            return true;
+        });
+    }
+
+    function redirectToCalculator(car) {
+        const carData = encodeURIComponent(JSON.stringify(car));
+        window.location.href = `http://127.0.0.1:5500/index.html`;
+    }
 
     fetchCars();
 });
