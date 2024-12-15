@@ -366,17 +366,17 @@ body {
   background-color: transparent;
 }
 .calculator-btn {
-  background-color: #007bff; /* Niebieski kolor */
-  color: white; /* Kolor tekstu */
-  border: none; /* Brak obramowania */
-  padding: 10px 20px; /* Dodanie przestrzeni wewnętrznej */
-  font-size: 14px; /* Rozmiar tekstu */
-  border-radius: 4px; /* Zaokrąglone rogi */
-  cursor: pointer; /* Zmiana kursora na wskaźnik */
-  font-family: "Poppins", sans-serif; /* Konsystencja z innymi elementami */
-  transition: background-color 0.3s ease; /* Płynna zmiana koloru */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  transition: background-color 0.3s ease;
 }
 
 .calculator-btn:hover {
-  background-color: #0056b3; /* Ciemniejszy kolor na hover */
+  background-color: #0056b3;
 }
