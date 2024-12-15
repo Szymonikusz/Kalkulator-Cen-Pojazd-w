@@ -9,6 +9,7 @@ body {
   align-items: center;
   height: 100vh;
   overflow-y: auto;
+  margin-bottom: 30px;
   }
   .filter-container {
   background: white;

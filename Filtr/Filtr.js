@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const vehicleClassButtons = document.querySelectorAll(".vehicle-class button");
 
     vehicleClassButtons.forEach(button => {
@@ -40,32 +40,34 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    document.getElementById("seats").addEventListener("input", function () {
-        const value = this.value;
-        const max = this.max;
-        const min = this.min;
-
+    // Range slider for seats
+    const initSeatsSlider = () => {
+        const seatsInput = document.getElementById("seats");
         const seatsValue = document.getElementById("seatsValue");
-        seatsValue.textContent = value;
 
-        const percent = ((value - min) / (max - min)) * 100;
-        const rangeWidth = this.offsetWidth;
-        const thumbWidth = 20;
-        const offset = thumbWidth / 2;
-        const position = (percent / 100) * rangeWidth - offset;
+        seatsInput.addEventListener("input", function () {
+            const percent = ((this.value - this.min) / (this.max - this.min)) * 100;
+            const position = percent * (this.offsetWidth / 100) - 10; // Adjust thumb width
+            seatsValue.textContent = this.value;
+            seatsValue.style.left = `${position}px`;
+            this.style.background = `linear-gradient(to right, #007bff ${percent}%, #e6f7ff ${percent}%)`;
+        });
+    };
 
-        seatsValue.style.left = `${position}px`;
+    // Range slider for price
+    const initPriceSlider = () => {
+        const priceInput = document.getElementById("price");
+        const priceValue = document.getElementById("priceValue");
 
-        this.style.background = `linear-gradient(to right, #007bff ${percent}%, #e6f7ff ${percent}%)`;
-    });
-
-    document.getElementById("price").addEventListener("input", function () {
-        document.getElementById("priceValue").textContent = this.value + " zł";
-    });
+        priceInput.addEventListener("input", function () {
+            priceValue.textContent = `${this.value} zł`;
+        });
+    };
 
     const apiUrl = "https://run.mocky.io/v3/8b7fe4b1-5f39-442b-b1ca-bad7dd11a9e2";
 
     async function fetchCars() {
+        const container = document.getElementById("cars-container");
         try {
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error("Błąd podczas pobierania danych z API");
@@ -74,7 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
             setupPagination(cars);
             return cars;
         } catch (error) {
-            console.error("Wystąpił błąd:", error);
+            console.error("Wystąpił błąd:", error.message);
+            container.innerHTML = `<p class="error-message">Nie udało się załadować danych. Spróbuj ponownie później.</p>`;
+            return [];
         }
     }
 
@@ -143,63 +147,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function setupPagination(cars, carsPerPage = 6) {
         const paginationContainer = document.getElementById("pagination-container");
-        paginationContainer.innerHTML = "";
-
         const totalPages = Math.ceil(cars.length / carsPerPage);
-
         let currentPage = 1;
 
-        function renderPagination() {
-            paginationContainer.innerHTML = "";
+        const renderPageButtons = () => {
+            paginationContainer.innerHTML = `
+                <button class="pagination-arrow" ${currentPage === 1 ? "disabled" : ""}>«</button>
+                ${Array.from({ length: totalPages }, (_, i) => `
+                    <button class="pagination-button ${currentPage === i + 1 ? "active" : ""}">${i + 1}</button>
+                `).join("")}
+                <button class="pagination-arrow" ${currentPage === totalPages ? "disabled" : ""}>»</button>
+            `;
 
-            const prevButton = document.createElement("button");
-            prevButton.textContent = "«";
-            prevButton.classList.add("pagination-arrow");
-            prevButton.disabled = currentPage === 1;
-            prevButton.addEventListener("click", () => {
-                if (currentPage > 1) {
-                    currentPage--;
+            const buttons = paginationContainer.querySelectorAll("button");
+            buttons.forEach((btn, index) => {
+                btn.addEventListener("click", () => {
+                    if (btn.textContent === "«") currentPage--;
+                    else if (btn.textContent === "»") currentPage++;
+                    else currentPage = parseInt(btn.textContent);
                     displayPaginatedCars(cars, currentPage, carsPerPage);
-                    renderPagination();
-                }
-            });
-            paginationContainer.appendChild(prevButton);
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageButton = document.createElement("button");
-                pageButton.textContent = i;
-                pageButton.classList.add("pagination-button");
-                if (i === currentPage) {
-                    pageButton.classList.add("active");
-                }
-                pageButton.addEventListener("click", () => {
-                    currentPage = i;
-                    displayPaginatedCars(cars, currentPage, carsPerPage);
-                    renderPagination();
+                    renderPageButtons();
                 });
-                paginationContainer.appendChild(pageButton);
-            }
-
-            const nextButton = document.createElement("button");
-            nextButton.textContent = "»";
-            nextButton.classList.add("pagination-arrow");
-            nextButton.disabled = currentPage === totalPages;
-            nextButton.addEventListener("click", () => {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    displayPaginatedCars(cars, currentPage, carsPerPage);
-                    renderPagination();
-                }
             });
-            paginationContainer.appendChild(nextButton);
-        }
+        };
 
-        renderPagination();
+        renderPageButtons();
     }
 
     function getFilterData() {
         const seats = document.getElementById("seats").value;
-        const vehicleClass = document.getElementById("vehicleClass").value;
+        const vehicleClass = document.getElementById("vehicleClass");
 
         const gearbox = document.querySelector("input[name='gearbox']:checked");
         const selectedGearbox = gearbox ? gearbox.value : null;
@@ -211,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return {
             seats,
-            vehicleClass,
+            vehicleClass: vehicleClass ? vehicleClass.value : null,
             gearbox: selectedGearbox,
             fuel: selectedFuel,
             price,
@@ -233,20 +210,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function filterCars(cars, filterData) {
-        return cars.filter(car => {
-            if (filterData.seats && car.seats < parseInt(filterData.seats)) return false;
-            if (filterData.vehicleClass && car.vehicleClass !== filterData.vehicleClass) return false;
-            if (filterData.gearbox && car.transmission !== filterData.gearbox) return false;
-            if (filterData.fuel && car.fuel !== filterData.fuel) return false;
-            if (filterData.price && car.dailyPriceWithVAT > parseInt(filterData.price)) return false;
-            return true;
-        });
+        return cars.filter(car => (
+            (!filterData.seats || car.seats >= parseInt(filterData.seats)) &&
+            (!filterData.vehicleClass || car.vehicleClass === filterData.vehicleClass) &&
+            (!filterData.gearbox || car.transmission === filterData.gearbox) &&
+            (!filterData.fuel || car.fuel === filterData.fuel) &&
+            (!filterData.price || car.dailyPriceWithVAT <= parseInt(filterData.price))
+        ));
     }
 
     function redirectToCalculator(car) {
         const carData = encodeURIComponent(JSON.stringify(car));
-        window.location.href = `http://127.0.0.1:5500/index.html`;
+        const baseUrl = window.location.origin + "/calculator.html"; // Dynamiczny URL
+        window.location.href = `${baseUrl}?carData=${carData}`;
     }
 
     fetchCars();
+
+    // Initialize sliders
+    initSeatsSlider();
+    initPriceSlider();
 });
