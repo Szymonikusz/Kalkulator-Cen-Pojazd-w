@@ -40,21 +40,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Range slider for seats
     const initSeatsSlider = () => {
         const seatsInput = document.getElementById("seats");
         const seatsValue = document.getElementById("seatsValue");
 
         seatsInput.addEventListener("input", function () {
             const percent = ((this.value - this.min) / (this.max - this.min)) * 100;
-            const position = percent * (this.offsetWidth / 100) - 10; // Adjust thumb width
+            const position = percent * (this.offsetWidth / 100) - 10;
             seatsValue.textContent = this.value;
             seatsValue.style.left = `${position}px`;
             this.style.background = `linear-gradient(to right, #007bff ${percent}%, #e6f7ff ${percent}%)`;
         });
     };
 
-    // Range slider for price
     const initPriceSlider = () => {
         const priceInput = document.getElementById("price");
         const priceValue = document.getElementById("priceValue");
@@ -221,13 +219,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function redirectToCalculator(car) {
         const carData = encodeURIComponent(JSON.stringify(car));
-        const baseUrl = window.location.origin + "/calculator.html"; // Dynamiczny URL
+        const baseUrl = window.location.origin + "/calculator.html";
         window.location.href = `${baseUrl}?carData=${carData}`;
     }
 
     fetchCars();
 
-    // Initialize sliders
     initSeatsSlider();
     initPriceSlider();
 });
