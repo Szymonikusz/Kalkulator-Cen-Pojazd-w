@@ -57,7 +57,6 @@ body {
   background-color: white;
   }
   .filter-btn {
-  margin-top: 20px;
   background-color: #007bff;
   color: white;
   padding: 10px 20px;
@@ -379,4 +378,35 @@ body {
 
 .calculator-btn:hover {
   background-color: #0056b3;
+}
+.slider-values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  transition: opacity 1s ease-in-out;
+}
+
+.slider-values.fade-out {
+  opacity: 0;
+}
+#slider {
+  margin-top: 40px;
+}
+.noUi-tooltip {
+    background-color: #000;
+    color: #fff;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.filter-section {
+  margin-top: 15px;
+}
+.options-grid .option img {
+  width: 30px;
+  height: auto;
 }

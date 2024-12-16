@@ -53,16 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    const initPriceSlider = () => {
-        const priceInput = document.getElementById("price");
-        const priceValue = document.getElementById("priceValue");
 
-        priceInput.addEventListener("input", function () {
-            priceValue.textContent = `${this.value} zł`;
-        });
-    };
-
-    const apiUrl = "https://run.mocky.io/v3/8b7fe4b1-5f39-442b-b1ca-bad7dd11a9e2";
+    const apiUrl = "/api/cars.json";
 
     async function fetchCars() {
         const container = document.getElementById("cars-container");
@@ -149,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let currentPage = 1;
 
         const renderPageButtons = () => {
+            
             paginationContainer.innerHTML = `
                 <button class="pagination-arrow" ${currentPage === 1 ? "disabled" : ""}>«</button>
                 ${Array.from({ length: totalPages }, (_, i) => `
@@ -218,13 +211,84 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function redirectToCalculator(car) {
-        const carData = encodeURIComponent(JSON.stringify(car));
-        const baseUrl = window.location.origin + "/calculator.html";
-        window.location.href = `${baseUrl}?carData=${carData}`;
+        const carId = encodeURIComponent(car.id);
+        const baseUrl = "index.html";
+        window.location.href = `${baseUrl}?carId=${carId}`;
     }
 
     fetchCars();
 
     initSeatsSlider();
-    initPriceSlider();
+});
+var slider = document.getElementById('slider');
+
+var slider = document.getElementById('slider');
+
+noUiSlider.create(slider, {
+    start: [50, 400],
+    connect: true,
+    range: {
+        'min': 50,
+        'max': 400
+    },
+    step: 1,
+    tooltips: true,
+    format: {
+        to: function (value) {
+            return Math.round(value) + " zł";
+        },
+        from: function (value) {
+            return Number(value.replace(' zł', ''));
+        }
+    }
+});
+function getSelectedOptions() {
+    const seats = document.getElementById("seats").value;
+    const vehicleClass = document.getElementById("vehicleClass").value;
+
+    const gearbox = document.querySelector("input[name='gearbox']:checked");
+    const selectedGearbox = gearbox ? gearbox.value : null;
+
+    const fuel = document.querySelector("input[name='fuel']:checked");
+    const selectedFuel = fuel ? fuel.value : null;
+
+    const price = document.getElementById("price").value;
+
+    return {
+        seats: parseInt(seats),
+        vehicleClass: vehicleClass || null,
+        gearbox: selectedGearbox,
+        fuel: selectedFuel,
+        price: parseInt(price),
+    };
+}
+function filterCarsByOptions(cars, selectedOptions) {
+    return cars.filter(car => (
+        (!selectedOptions.seats || car.seats >= selectedOptions.seats) &&
+        (!selectedOptions.vehicleClass || car.vehicleClass === selectedOptions.vehicleClass) &&
+        (!selectedOptions.gearbox || car.transmission === selectedOptions.gearbox) &&
+        (!selectedOptions.fuel || car.fuel === selectedOptions.fuel) &&
+        (!selectedOptions.price || car.dailyPriceWithVAT <= selectedOptions.price)
+    ));
+}
+function hideCars(cars, selectedOptions) {
+    const filteredCars = filterCarsByOptions(cars, selectedOptions);
+
+    const carElements = document.querySelectorAll(".car");
+
+    carElements.forEach(carElement => {
+        const carId = carElement.getAttribute("data-id");
+        const isVisible = filteredCars.some(car => car.id === parseInt(carId));
+
+        carElement.style.display = isVisible ? "block" : "none";
+    });
+}
+carElement.setAttribute("data-id", car.id);
+const calculatorButton = document.getElementById("calculatorButton");
+calculatorButton.addEventListener("click", () => {
+    const selectedOptions = getSelectedOptions();
+
+    fetchCars().then(cars => {
+        hideCars(cars, selectedOptions);
+    });
 });

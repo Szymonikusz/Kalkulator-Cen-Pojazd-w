@@ -6,6 +6,8 @@
   <title>Filtr Samochodów</title>
   <link rel="stylesheet" href="Filtr.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="/library/nouislider/nouislider.css" rel="stylesheet">
+<script src="/library/nouislider/nouislider.js"></script>
 </head>
 <body>
   <div class="filter-container">
@@ -88,17 +90,18 @@
           <span class="category-line"></span>
           <span class="category-title">Cena</span>
         </header>
-        <div class="slider-container">
-          <input type="range" id="price" name="price" min="50" max="400" value="50">
-          <span id="priceValue" class="range-value">50 zł</span>
-        </div>
+        <div id="slider"></div>
       </section>
+
+      </section>
+
+      <div id="slider"></div>
 
       <button type="submit" class="filter-btn">Filtruj</button>
     </form>
   </div>
 
-  <div style="float: right; width: 50%; position: relative;">
+  <div>
     <div id="cars-container"></div>
     <div id="pagination-container"></div>
   </div>
