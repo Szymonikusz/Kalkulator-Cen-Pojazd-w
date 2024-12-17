@@ -12,7 +12,7 @@
 <body>
   <div class="filter-container">
     <h1>Filtr Samochodów</h1>
-    <form id="filterForm" onsubmit="submitFilter(event)">
+    <form id="filterForm">
 
       <section class="filter-section">
         <header>
@@ -30,7 +30,7 @@
           <span class="category-line"></span>
           <span class="category-title">Klasa pojazdu</span>
         </header>
-        <div class="vehicle-class">
+        <div value="priceListName" class="vehicle-class">
           <button data-class="B">B</button>
           <button data-class="C">C</button>
           <button data-class="D">D</button>
@@ -55,12 +55,12 @@
         <div class="options-grid">
           <div class="option">
             <img src="/filtr/assets/Manual.svg" alt="Manualna">
-            <input type="radio" id="manual" name="gearbox" value="Manualna">
+            <input type="radio" id="manual" name="gearbox" value="Manual">
             <label for="manual">Manualna</label>
           </div>
           <div class="option">
             <img src="/filtr/assets/Automatic.svg" alt="Automatyczna">
-            <input type="radio" id="automatic" name="gearbox" value="Automatyczna">
+            <input type="radio" id="automatic" name="gearbox" value="Automatic">
             <label for="automatic">Automatyczna</label>
           </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="options-grid">
           <div class="option">
             <img src="/filtr/assets/Gas.svg" alt="Benzyna">
-            <input type="radio" id="petrol" name="fuel" value="Benzyna">
+            <input type="radio" id="petrol" name="fuel" value="Petrol">
             <label for="petrol">Benzyna</label>
           </div>
           <div class="option">
@@ -97,7 +97,7 @@
 
       <div id="slider"></div>
 
-      <button type="submit" class="filter-btn">Filtruj</button>
+      <button type="submit" class="filter-btn" id="filterButton">Filtruj</button>
     </form>
   </div>
 

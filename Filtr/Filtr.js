@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const optionContainers = document.querySelectorAll(".options-grid .option");
-
     optionContainers.forEach(option => {
         option.addEventListener("click", function (event) {
             event.preventDefault();
@@ -52,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
             this.style.background = `linear-gradient(to right, #007bff ${percent}%, #e6f7ff ${percent}%)`;
         });
     };
-
 
     const apiUrl = "/api/cars.json";
 
@@ -92,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         carsToDisplay.forEach(car => {
             const carElement = document.createElement("div");
             carElement.classList.add("car");
+            carElement.setAttribute("data-id", car.id);
 
             const carImage = document.createElement("img");
             carImage.src = `https://eurologic.rentcarsoft.pl/grafiki/oferta/256/${car.imageIdentifier}`;
@@ -151,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
 
             const buttons = paginationContainer.querySelectorAll("button");
-            buttons.forEach((btn, index) => {
+            buttons.forEach((btn) => {
                 btn.addEventListener("click", () => {
                     if (btn.textContent === "«") currentPage--;
                     else if (btn.textContent === "»") currentPage++;
@@ -167,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function getFilterData() {
         const seats = document.getElementById("seats").value;
-        const vehicleClass = document.getElementById("vehicleClass");
+        const vehicleClass = document.getElementById("vehicleClass").value;
 
         const gearbox = document.querySelector("input[name='gearbox']:checked");
         const selectedGearbox = gearbox ? gearbox.value : null;
@@ -175,14 +174,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const fuel = document.querySelector("input[name='fuel']:checked");
         const selectedFuel = fuel ? fuel.value : null;
 
-        const price = document.getElementById("price").value;
+        const sliderValues = slider.noUiSlider.get();
+        const minPrice = parseInt(sliderValues[0]);
+        const maxPrice = parseInt(sliderValues[1]);
 
         return {
-            seats,
-            vehicleClass: vehicleClass ? vehicleClass.value : null,
+            seats: parseInt(seats) || null,
+            vehicleClass: vehicleClass || null,
             gearbox: selectedGearbox,
             fuel: selectedFuel,
-            price,
+            minPrice,
+            maxPrice
         };
     }
 
@@ -200,13 +202,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    function filterCars(cars, filterData) {
+    function filterCars(cars, filterData) { 
         return cars.filter(car => (
             (!filterData.seats || car.seats >= parseInt(filterData.seats)) &&
-            (!filterData.vehicleClass || car.vehicleClass === filterData.vehicleClass) &&
-            (!filterData.gearbox || car.transmission === filterData.gearbox) &&
-            (!filterData.fuel || car.fuel === filterData.fuel) &&
-            (!filterData.price || car.dailyPriceWithVAT <= parseInt(filterData.price))
+            (!filterData.vehicleClass || car.priceListName === filterData.vehicleClass) &&
+            (!filterData.gearbox || car.transmissionType === filterData.gearbox) &&
+            (!filterData.fuel || car.fuelType === filterData.fuel) &&  // ZMIANA TUTAJ
+            (car.dailyPriceWithVAT >= filterData.minPrice && car.dailyPriceWithVAT <= filterData.maxPrice)
         ));
     }
 
@@ -220,7 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initSeatsSlider();
 });
-var slider = document.getElementById('slider');
 
 var slider = document.getElementById('slider');
 
@@ -241,54 +242,4 @@ noUiSlider.create(slider, {
             return Number(value.replace(' zł', ''));
         }
     }
-});
-function getSelectedOptions() {
-    const seats = document.getElementById("seats").value;
-    const vehicleClass = document.getElementById("vehicleClass").value;
-
-    const gearbox = document.querySelector("input[name='gearbox']:checked");
-    const selectedGearbox = gearbox ? gearbox.value : null;
-
-    const fuel = document.querySelector("input[name='fuel']:checked");
-    const selectedFuel = fuel ? fuel.value : null;
-
-    const price = document.getElementById("price").value;
-
-    return {
-        seats: parseInt(seats),
-        vehicleClass: vehicleClass || null,
-        gearbox: selectedGearbox,
-        fuel: selectedFuel,
-        price: parseInt(price),
-    };
-}
-function filterCarsByOptions(cars, selectedOptions) {
-    return cars.filter(car => (
-        (!selectedOptions.seats || car.seats >= selectedOptions.seats) &&
-        (!selectedOptions.vehicleClass || car.vehicleClass === selectedOptions.vehicleClass) &&
-        (!selectedOptions.gearbox || car.transmission === selectedOptions.gearbox) &&
-        (!selectedOptions.fuel || car.fuel === selectedOptions.fuel) &&
-        (!selectedOptions.price || car.dailyPriceWithVAT <= selectedOptions.price)
-    ));
-}
-function hideCars(cars, selectedOptions) {
-    const filteredCars = filterCarsByOptions(cars, selectedOptions);
-
-    const carElements = document.querySelectorAll(".car");
-
-    carElements.forEach(carElement => {
-        const carId = carElement.getAttribute("data-id");
-        const isVisible = filteredCars.some(car => car.id === parseInt(carId));
-
-        carElement.style.display = isVisible ? "block" : "none";
-    });
-}
-carElement.setAttribute("data-id", car.id);
-const calculatorButton = document.getElementById("calculatorButton");
-calculatorButton.addEventListener("click", () => {
-    const selectedOptions = getSelectedOptions();
-
-    fetchCars().then(cars => {
-        hideCars(cars, selectedOptions);
-    });
 });
